@@ -1,0 +1,103 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_tim1_EncoderInterfaceConfig
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _TIM1_EncoderInterfaceConfig
+                                     12 ;--------------------------------------------------------
+                                     13 ; ram data
+                                     14 ;--------------------------------------------------------
+                                     15 	.area DATA
+                                     16 ;--------------------------------------------------------
+                                     17 ; ram data
+                                     18 ;--------------------------------------------------------
+                                     19 	.area INITIALIZED
+                                     20 ;--------------------------------------------------------
+                                     21 ; absolute external ram data
+                                     22 ;--------------------------------------------------------
+                                     23 	.area DABS (ABS)
+                                     24 
+                                     25 ; default segment ordering for linker
+                                     26 	.area HOME
+                                     27 	.area GSINIT
+                                     28 	.area GSFINAL
+                                     29 	.area CONST
+                                     30 	.area INITIALIZER
+                                     31 	.area CODE
+                                     32 
+                                     33 ;--------------------------------------------------------
+                                     34 ; global & static initialisations
+                                     35 ;--------------------------------------------------------
+                                     36 	.area HOME
+                                     37 	.area GSINIT
+                                     38 	.area GSFINAL
+                                     39 	.area GSINIT
+                                     40 ;--------------------------------------------------------
+                                     41 ; Home
+                                     42 ;--------------------------------------------------------
+                                     43 	.area HOME
+                                     44 	.area HOME
+                                     45 ;--------------------------------------------------------
+                                     46 ; code
+                                     47 ;--------------------------------------------------------
+                                     48 	.area CODE
+                                     49 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 62: void TIM1_EncoderInterfaceConfig(TIM1_EncoderMode_TypeDef TIM1_EncoderMode,
+                                     50 ;	-----------------------------------------
+                                     51 ;	 function TIM1_EncoderInterfaceConfig
+                                     52 ;	-----------------------------------------
+      000000                         53 _TIM1_EncoderInterfaceConfig:
+                                     54 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 74: TIM1->CCER1 |= TIM1_CCER1_CC1P;
+      000000 C6 52 5C         [ 1]   55 	ld	a, 0x525c
+                                     56 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 72: if (TIM1_IC1Polarity != TIM1_ICPOLARITY_RISING)
+      000003 0D 04            [ 1]   57 	tnz	(0x04, sp)
+      000005 27 07            [ 1]   58 	jreq	00102$
+                                     59 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 74: TIM1->CCER1 |= TIM1_CCER1_CC1P;
+      000007 AA 02            [ 1]   60 	or	a, #0x02
+      000009 C7 52 5C         [ 1]   61 	ld	0x525c, a
+      00000C 20 05            [ 2]   62 	jra	00103$
+      00000E                         63 00102$:
+                                     64 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 78: TIM1->CCER1 &= (uint8_t)(~TIM1_CCER1_CC1P);
+      00000E A4 FD            [ 1]   65 	and	a, #0xfd
+      000010 C7 52 5C         [ 1]   66 	ld	0x525c, a
+      000013                         67 00103$:
+                                     68 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 74: TIM1->CCER1 |= TIM1_CCER1_CC1P;
+      000013 C6 52 5C         [ 1]   69 	ld	a, 0x525c
+                                     70 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 81: if (TIM1_IC2Polarity != TIM1_ICPOLARITY_RISING)
+      000016 0D 05            [ 1]   71 	tnz	(0x05, sp)
+      000018 27 07            [ 1]   72 	jreq	00105$
+                                     73 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 83: TIM1->CCER1 |= TIM1_CCER1_CC2P;
+      00001A AA 20            [ 1]   74 	or	a, #0x20
+      00001C C7 52 5C         [ 1]   75 	ld	0x525c, a
+      00001F 20 05            [ 2]   76 	jra	00106$
+      000021                         77 00105$:
+                                     78 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 87: TIM1->CCER1 &= (uint8_t)(~TIM1_CCER1_CC2P);
+      000021 A4 DF            [ 1]   79 	and	a, #0xdf
+      000023 C7 52 5C         [ 1]   80 	ld	0x525c, a
+      000026                         81 00106$:
+                                     82 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 90: TIM1->SMCR = (uint8_t)((uint8_t)(TIM1->SMCR & (uint8_t)(TIM1_SMCR_MSM | TIM1_SMCR_TS))
+      000026 C6 52 52         [ 1]   83 	ld	a, 0x5252
+      000029 A4 F0            [ 1]   84 	and	a, #0xf0
+                                     85 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 91: | (uint8_t) TIM1_EncoderMode);
+      00002B 1A 03            [ 1]   86 	or	a, (0x03, sp)
+      00002D C7 52 52         [ 1]   87 	ld	0x5252, a
+                                     88 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 94: TIM1->CCMR1 = (uint8_t)((uint8_t)(TIM1->CCMR1 & (uint8_t)(~TIM1_CCMR_CCxS)) 
+      000030 C6 52 58         [ 1]   89 	ld	a, 0x5258
+      000033 A4 FC            [ 1]   90 	and	a, #0xfc
+      000035 AA 01            [ 1]   91 	or	a, #0x01
+      000037 C7 52 58         [ 1]   92 	ld	0x5258, a
+                                     93 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 96: TIM1->CCMR2 = (uint8_t)((uint8_t)(TIM1->CCMR2 & (uint8_t)(~TIM1_CCMR_CCxS))
+      00003A C6 52 59         [ 1]   94 	ld	a, 0x5259
+      00003D A4 FC            [ 1]   95 	and	a, #0xfc
+      00003F AA 01            [ 1]   96 	or	a, #0x01
+      000041 C7 52 59         [ 1]   97 	ld	0x5259, a
+                                     98 ;	./src/stm8s_tim1_EncoderInterfaceConfig.c: 98: }
+      000044 81               [ 4]   99 	ret
+                                    100 	.area CODE
+                                    101 	.area CONST
+                                    102 	.area INITIALIZER
+                                    103 	.area CABS (ABS)

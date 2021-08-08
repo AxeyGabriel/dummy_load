@@ -1,0 +1,53 @@
+XH3
+H B areas 2 global symbols
+M stm8s_exti_GetExtIntSensitivity
+O -mstm8
+S .__.ABS. Def000000
+A _CODE size 0 flags 0 addr 0
+A DATA size 0 flags 0 addr 0
+A INITIALIZED size 0 flags 0 addr 0
+A DABS size 0 flags 8 addr 0
+A HOME size 0 flags 0 addr 0
+A GSINIT size 0 flags 0 addr 0
+A GSFINAL size 0 flags 0 addr 0
+A CONST size 0 flags 0 addr 0
+A INITIALIZER size 0 flags 0 addr 0
+A CODE size 45 flags 0 addr 0
+S _EXTI_GetExtIntSensitivity Def000000
+A CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 00 09
+T 00 00 00 4F 88 7B 04 A1 04 84 23 01 81
+R 00 00 00 09
+T 00 00 0A
+R 00 00 00 09
+T 00 00 0A 5F 7B 03 97 58 DE 00 13 FC
+R 00 00 00 09 10 09 00 09
+T 00 00 13
+R 00 00 00 09
+T 00 00 13 00 1D 00 23
+R 00 00 00 09 00 03 00 09 00 05 00 09
+T 00 00 17 00 2B 00 34
+R 00 00 00 09 00 03 00 09 00 05 00 09
+T 00 00 1B 00 3F
+R 00 00 00 09 00 03 00 09
+T 00 00 1D
+R 00 00 00 09
+T 00 00 1D C6 50 A0 A4 03 81
+R 00 00 00 09
+T 00 00 23
+R 00 00 00 09
+T 00 00 23 C6 50 A0 A4 0C 44 44 81
+R 00 00 00 09
+T 00 00 2B
+R 00 00 00 09
+T 00 00 2B C6 50 A0 A4 30 4E A4 0F 81
+R 00 00 00 09
+T 00 00 34
+R 00 00 00 09
+T 00 00 34 C6 50 A0 A4 C0 4E A4 0F 44 44 81
+R 00 00 00 09
+T 00 00 3F
+R 00 00 00 09
+T 00 00 3F C6 50 A1 A4 03 81
+R 00 00 00 09

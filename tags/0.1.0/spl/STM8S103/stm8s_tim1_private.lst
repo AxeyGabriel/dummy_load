@@ -1,0 +1,209 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_tim1_private
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _TIM1_TI1_Config
+                                     12 	.globl _TIM1_TI2_Config
+                                     13 	.globl _TIM1_TI3_Config
+                                     14 	.globl _TIM1_TI4_Config
+                                     15 ;--------------------------------------------------------
+                                     16 ; ram data
+                                     17 ;--------------------------------------------------------
+                                     18 	.area DATA
+                                     19 ;--------------------------------------------------------
+                                     20 ; ram data
+                                     21 ;--------------------------------------------------------
+                                     22 	.area INITIALIZED
+                                     23 ;--------------------------------------------------------
+                                     24 ; absolute external ram data
+                                     25 ;--------------------------------------------------------
+                                     26 	.area DABS (ABS)
+                                     27 
+                                     28 ; default segment ordering for linker
+                                     29 	.area HOME
+                                     30 	.area GSINIT
+                                     31 	.area GSFINAL
+                                     32 	.area CONST
+                                     33 	.area INITIALIZER
+                                     34 	.area CODE
+                                     35 
+                                     36 ;--------------------------------------------------------
+                                     37 ; global & static initialisations
+                                     38 ;--------------------------------------------------------
+                                     39 	.area HOME
+                                     40 	.area GSINIT
+                                     41 	.area GSFINAL
+                                     42 	.area GSINIT
+                                     43 ;--------------------------------------------------------
+                                     44 ; Home
+                                     45 ;--------------------------------------------------------
+                                     46 	.area HOME
+                                     47 	.area HOME
+                                     48 ;--------------------------------------------------------
+                                     49 ; code
+                                     50 ;--------------------------------------------------------
+                                     51 	.area CODE
+                                     52 ;	./src/stm8s_tim1_private.c: 58: void TIM1_TI1_Config(uint8_t TIM1_ICPolarity,
+                                     53 ;	-----------------------------------------
+                                     54 ;	 function TIM1_TI1_Config
+                                     55 ;	-----------------------------------------
+      000000                         56 _TIM1_TI1_Config:
+      000000 88               [ 1]   57 	push	a
+                                     58 ;	./src/stm8s_tim1_private.c: 63: TIM1->CCER1 &= (uint8_t)(~TIM1_CCER1_CC1E);
+      000001 72 11 52 5C      [ 1]   59 	bres	21084, #0
+                                     60 ;	./src/stm8s_tim1_private.c: 66: TIM1->CCMR1 = (uint8_t)((uint8_t)(TIM1->CCMR1 & (uint8_t)(~(uint8_t)( TIM1_CCMR_CCxS | TIM1_CCMR_ICxF ))) | 
+      000005 C6 52 58         [ 1]   61 	ld	a, 0x5258
+      000008 A4 0C            [ 1]   62 	and	a, #0x0c
+      00000A 6B 01            [ 1]   63 	ld	(0x01, sp), a
+                                     64 ;	./src/stm8s_tim1_private.c: 67: (uint8_t)(( (TIM1_ICSelection)) | ((uint8_t)( TIM1_ICFilter << 4))));
+      00000C 7B 06            [ 1]   65 	ld	a, (0x06, sp)
+      00000E 4E               [ 1]   66 	swap	a
+      00000F A4 F0            [ 1]   67 	and	a, #0xf0
+      000011 1A 05            [ 1]   68 	or	a, (0x05, sp)
+      000013 1A 01            [ 1]   69 	or	a, (0x01, sp)
+      000015 C7 52 58         [ 1]   70 	ld	0x5258, a
+                                     71 ;	./src/stm8s_tim1_private.c: 63: TIM1->CCER1 &= (uint8_t)(~TIM1_CCER1_CC1E);
+      000018 C6 52 5C         [ 1]   72 	ld	a, 0x525c
+                                     73 ;	./src/stm8s_tim1_private.c: 70: if (TIM1_ICPolarity != TIM1_ICPOLARITY_RISING)
+      00001B 0D 04            [ 1]   74 	tnz	(0x04, sp)
+      00001D 27 07            [ 1]   75 	jreq	00102$
+                                     76 ;	./src/stm8s_tim1_private.c: 72: TIM1->CCER1 |= TIM1_CCER1_CC1P;
+      00001F AA 02            [ 1]   77 	or	a, #0x02
+      000021 C7 52 5C         [ 1]   78 	ld	0x525c, a
+      000024 20 05            [ 2]   79 	jra	00103$
+      000026                         80 00102$:
+                                     81 ;	./src/stm8s_tim1_private.c: 76: TIM1->CCER1 &= (uint8_t)(~TIM1_CCER1_CC1P);
+      000026 A4 FD            [ 1]   82 	and	a, #0xfd
+      000028 C7 52 5C         [ 1]   83 	ld	0x525c, a
+      00002B                         84 00103$:
+                                     85 ;	./src/stm8s_tim1_private.c: 80: TIM1->CCER1 |=  TIM1_CCER1_CC1E;
+      00002B 72 10 52 5C      [ 1]   86 	bset	21084, #0
+                                     87 ;	./src/stm8s_tim1_private.c: 81: }
+      00002F 84               [ 1]   88 	pop	a
+      000030 81               [ 4]   89 	ret
+                                     90 ;	./src/stm8s_tim1_private.c: 99: void TIM1_TI2_Config(uint8_t TIM1_ICPolarity,
+                                     91 ;	-----------------------------------------
+                                     92 ;	 function TIM1_TI2_Config
+                                     93 ;	-----------------------------------------
+      000031                         94 _TIM1_TI2_Config:
+      000031 88               [ 1]   95 	push	a
+                                     96 ;	./src/stm8s_tim1_private.c: 104: TIM1->CCER1 &=  (uint8_t)(~TIM1_CCER1_CC2E);
+      000032 72 19 52 5C      [ 1]   97 	bres	21084, #4
+                                     98 ;	./src/stm8s_tim1_private.c: 107: TIM1->CCMR2  = (uint8_t)((uint8_t)(TIM1->CCMR2 & (uint8_t)(~(uint8_t)( TIM1_CCMR_CCxS | TIM1_CCMR_ICxF ))) 
+      000036 C6 52 59         [ 1]   99 	ld	a, 0x5259
+      000039 A4 0C            [ 1]  100 	and	a, #0x0c
+      00003B 6B 01            [ 1]  101 	ld	(0x01, sp), a
+                                    102 ;	./src/stm8s_tim1_private.c: 108: | (uint8_t)(( (TIM1_ICSelection)) | ((uint8_t)( TIM1_ICFilter << 4))));
+      00003D 7B 06            [ 1]  103 	ld	a, (0x06, sp)
+      00003F 4E               [ 1]  104 	swap	a
+      000040 A4 F0            [ 1]  105 	and	a, #0xf0
+      000042 1A 05            [ 1]  106 	or	a, (0x05, sp)
+      000044 1A 01            [ 1]  107 	or	a, (0x01, sp)
+      000046 C7 52 59         [ 1]  108 	ld	0x5259, a
+                                    109 ;	./src/stm8s_tim1_private.c: 104: TIM1->CCER1 &=  (uint8_t)(~TIM1_CCER1_CC2E);
+      000049 C6 52 5C         [ 1]  110 	ld	a, 0x525c
+                                    111 ;	./src/stm8s_tim1_private.c: 110: if (TIM1_ICPolarity != TIM1_ICPOLARITY_RISING)
+      00004C 0D 04            [ 1]  112 	tnz	(0x04, sp)
+      00004E 27 07            [ 1]  113 	jreq	00102$
+                                    114 ;	./src/stm8s_tim1_private.c: 112: TIM1->CCER1 |= TIM1_CCER1_CC2P;
+      000050 AA 20            [ 1]  115 	or	a, #0x20
+      000052 C7 52 5C         [ 1]  116 	ld	0x525c, a
+      000055 20 05            [ 2]  117 	jra	00103$
+      000057                        118 00102$:
+                                    119 ;	./src/stm8s_tim1_private.c: 116: TIM1->CCER1 &= (uint8_t)(~TIM1_CCER1_CC2P);
+      000057 A4 DF            [ 1]  120 	and	a, #0xdf
+      000059 C7 52 5C         [ 1]  121 	ld	0x525c, a
+      00005C                        122 00103$:
+                                    123 ;	./src/stm8s_tim1_private.c: 119: TIM1->CCER1 |=  TIM1_CCER1_CC2E;
+      00005C 72 18 52 5C      [ 1]  124 	bset	21084, #4
+                                    125 ;	./src/stm8s_tim1_private.c: 120: }
+      000060 84               [ 1]  126 	pop	a
+      000061 81               [ 4]  127 	ret
+                                    128 ;	./src/stm8s_tim1_private.c: 138: void TIM1_TI3_Config(uint8_t TIM1_ICPolarity,
+                                    129 ;	-----------------------------------------
+                                    130 ;	 function TIM1_TI3_Config
+                                    131 ;	-----------------------------------------
+      000062                        132 _TIM1_TI3_Config:
+      000062 88               [ 1]  133 	push	a
+                                    134 ;	./src/stm8s_tim1_private.c: 143: TIM1->CCER2 &=  (uint8_t)(~TIM1_CCER2_CC3E);
+      000063 C6 52 5D         [ 1]  135 	ld	a, 0x525d
+      000066 A4 FE            [ 1]  136 	and	a, #0xfe
+      000068 C7 52 5D         [ 1]  137 	ld	0x525d, a
+                                    138 ;	./src/stm8s_tim1_private.c: 146: TIM1->CCMR3 = (uint8_t)((uint8_t)(TIM1->CCMR3 & (uint8_t)(~(uint8_t)( TIM1_CCMR_CCxS | TIM1_CCMR_ICxF))) 
+      00006B C6 52 5A         [ 1]  139 	ld	a, 0x525a
+      00006E A4 0C            [ 1]  140 	and	a, #0x0c
+      000070 6B 01            [ 1]  141 	ld	(0x01, sp), a
+                                    142 ;	./src/stm8s_tim1_private.c: 147: | (uint8_t)(( (TIM1_ICSelection)) | ((uint8_t)( TIM1_ICFilter << 4))));
+      000072 7B 06            [ 1]  143 	ld	a, (0x06, sp)
+      000074 4E               [ 1]  144 	swap	a
+      000075 A4 F0            [ 1]  145 	and	a, #0xf0
+      000077 1A 05            [ 1]  146 	or	a, (0x05, sp)
+      000079 1A 01            [ 1]  147 	or	a, (0x01, sp)
+      00007B C7 52 5A         [ 1]  148 	ld	0x525a, a
+                                    149 ;	./src/stm8s_tim1_private.c: 143: TIM1->CCER2 &=  (uint8_t)(~TIM1_CCER2_CC3E);
+      00007E C6 52 5D         [ 1]  150 	ld	a, 0x525d
+                                    151 ;	./src/stm8s_tim1_private.c: 150: if (TIM1_ICPolarity != TIM1_ICPOLARITY_RISING)
+      000081 0D 04            [ 1]  152 	tnz	(0x04, sp)
+      000083 27 07            [ 1]  153 	jreq	00102$
+                                    154 ;	./src/stm8s_tim1_private.c: 152: TIM1->CCER2 |= TIM1_CCER2_CC3P;
+      000085 AA 02            [ 1]  155 	or	a, #0x02
+      000087 C7 52 5D         [ 1]  156 	ld	0x525d, a
+      00008A 20 05            [ 2]  157 	jra	00103$
+      00008C                        158 00102$:
+                                    159 ;	./src/stm8s_tim1_private.c: 156: TIM1->CCER2 &= (uint8_t)(~TIM1_CCER2_CC3P);
+      00008C A4 FD            [ 1]  160 	and	a, #0xfd
+      00008E C7 52 5D         [ 1]  161 	ld	0x525d, a
+      000091                        162 00103$:
+                                    163 ;	./src/stm8s_tim1_private.c: 159: TIM1->CCER2 |=  TIM1_CCER2_CC3E;
+      000091 72 10 52 5D      [ 1]  164 	bset	21085, #0
+                                    165 ;	./src/stm8s_tim1_private.c: 160: }
+      000095 84               [ 1]  166 	pop	a
+      000096 81               [ 4]  167 	ret
+                                    168 ;	./src/stm8s_tim1_private.c: 178: void TIM1_TI4_Config(uint8_t TIM1_ICPolarity,
+                                    169 ;	-----------------------------------------
+                                    170 ;	 function TIM1_TI4_Config
+                                    171 ;	-----------------------------------------
+      000097                        172 _TIM1_TI4_Config:
+      000097 88               [ 1]  173 	push	a
+                                    174 ;	./src/stm8s_tim1_private.c: 183: TIM1->CCER2 &=  (uint8_t)(~TIM1_CCER2_CC4E);
+      000098 72 19 52 5D      [ 1]  175 	bres	21085, #4
+                                    176 ;	./src/stm8s_tim1_private.c: 186: TIM1->CCMR4 = (uint8_t)((uint8_t)(TIM1->CCMR4 & (uint8_t)(~(uint8_t)( TIM1_CCMR_CCxS | TIM1_CCMR_ICxF )))
+      00009C C6 52 5B         [ 1]  177 	ld	a, 0x525b
+      00009F A4 0C            [ 1]  178 	and	a, #0x0c
+      0000A1 6B 01            [ 1]  179 	ld	(0x01, sp), a
+                                    180 ;	./src/stm8s_tim1_private.c: 187: | (uint8_t)(( (TIM1_ICSelection)) | ((uint8_t)( TIM1_ICFilter << 4))));
+      0000A3 7B 06            [ 1]  181 	ld	a, (0x06, sp)
+      0000A5 4E               [ 1]  182 	swap	a
+      0000A6 A4 F0            [ 1]  183 	and	a, #0xf0
+      0000A8 1A 05            [ 1]  184 	or	a, (0x05, sp)
+      0000AA 1A 01            [ 1]  185 	or	a, (0x01, sp)
+      0000AC C7 52 5B         [ 1]  186 	ld	0x525b, a
+                                    187 ;	./src/stm8s_tim1_private.c: 183: TIM1->CCER2 &=  (uint8_t)(~TIM1_CCER2_CC4E);
+      0000AF C6 52 5D         [ 1]  188 	ld	a, 0x525d
+                                    189 ;	./src/stm8s_tim1_private.c: 190: if (TIM1_ICPolarity != TIM1_ICPOLARITY_RISING)
+      0000B2 0D 04            [ 1]  190 	tnz	(0x04, sp)
+      0000B4 27 07            [ 1]  191 	jreq	00102$
+                                    192 ;	./src/stm8s_tim1_private.c: 192: TIM1->CCER2 |= TIM1_CCER2_CC4P;
+      0000B6 AA 20            [ 1]  193 	or	a, #0x20
+      0000B8 C7 52 5D         [ 1]  194 	ld	0x525d, a
+      0000BB 20 05            [ 2]  195 	jra	00103$
+      0000BD                        196 00102$:
+                                    197 ;	./src/stm8s_tim1_private.c: 196: TIM1->CCER2 &= (uint8_t)(~TIM1_CCER2_CC4P);
+      0000BD A4 DF            [ 1]  198 	and	a, #0xdf
+      0000BF C7 52 5D         [ 1]  199 	ld	0x525d, a
+      0000C2                        200 00103$:
+                                    201 ;	./src/stm8s_tim1_private.c: 200: TIM1->CCER2 |=  TIM1_CCER2_CC4E;
+      0000C2 72 18 52 5D      [ 1]  202 	bset	21085, #4
+                                    203 ;	./src/stm8s_tim1_private.c: 201: }
+      0000C6 84               [ 1]  204 	pop	a
+      0000C7 81               [ 4]  205 	ret
+                                    206 	.area CODE
+                                    207 	.area CONST
+                                    208 	.area INITIALIZER
+                                    209 	.area CABS (ABS)

@@ -1,0 +1,41 @@
+XH3
+H B areas 4 global symbols
+M stm8s_beep_LSICalibrationConfig
+O -mstm8
+S __mulint Ref000000
+S .__.ABS. Def000000
+S __divulong Ref000000
+A _CODE size 0 flags 0 addr 0
+A DATA size 0 flags 0 addr 0
+A INITIALIZED size 0 flags 0 addr 0
+A DABS size 0 flags 8 addr 0
+A HOME size 0 flags 0 addr 0
+A GSINIT size 0 flags 0 addr 0
+A GSFINAL size 0 flags 0 addr 0
+A CONST size 0 flags 0 addr 0
+A INITIALIZER size 0 flags 0 addr 0
+A CODE size 57 flags 0 addr 0
+S _BEEP_LSICalibrationConfig Def000000
+A CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 00 09
+T 00 00 00 52 07 4B E8 4B 03 5F 89 1E 10 89 1E 10
+R 00 00 00 09
+T 00 00 0D 89 CD 00 00 5B 08 51 C6 50 F3 A4 E0 C7
+R 00 00 00 09 02 05 00 02
+T 00 00 1A 50 F3 93 54 54 54 1F 01 58 58 58 1F 03
+R 00 00 00 09
+T 00 00 27 72 F2 03 1E 01 58 5C 89 90 89 CD 00 00
+R 00 00 00 09 02 0E 00 00
+T 00 00 34 5B 04 1F 05 C6 50 F3 6B 07 7B 02 1E 03
+R 00 00 00 09
+T 00 00 41 13 05 25 09 A0 02 1A 07 C7 50 F3 20 06
+R 00 00 00 09
+T 00 00 4E
+R 00 00 00 09
+T 00 00 4E 4A 1A 07 C7 50 F3
+R 00 00 00 09
+T 00 00 54
+R 00 00 00 09
+T 00 00 54 5B 07 81
+R 00 00 00 09

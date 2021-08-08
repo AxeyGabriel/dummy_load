@@ -1,0 +1,23 @@
+XH3
+H B areas 2 global symbols
+M stm8s_flash_DeInit
+O -mstm8
+S .__.ABS. Def000000
+A _CODE size 0 flags 0 addr 0
+A DATA size 0 flags 0 addr 0
+A INITIALIZED size 0 flags 0 addr 0
+A DABS size 0 flags 8 addr 0
+A HOME size 0 flags 0 addr 0
+A GSINIT size 0 flags 0 addr 0
+A GSFINAL size 0 flags 0 addr 0
+A CONST size 0 flags 0 addr 0
+A INITIALIZER size 0 flags 0 addr 0
+A CODE size 18 flags 0 addr 0
+S _FLASH_DeInit Def000000
+A CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 00 09
+T 00 00 00 35 00 50 5A 35 00 50 5B 35 FF 50 5C 72
+R 00 00 00 09
+T 00 00 0D 17 50 5F 72 13 50 5F C6 50 5F 81
+R 00 00 00 09

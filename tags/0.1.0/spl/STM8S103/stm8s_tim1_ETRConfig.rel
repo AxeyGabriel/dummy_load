@@ -1,0 +1,23 @@
+XH3
+H B areas 2 global symbols
+M stm8s_tim1_ETRConfig
+O -mstm8
+S .__.ABS. Def000000
+A _CODE size 0 flags 0 addr 0
+A DATA size 0 flags 0 addr 0
+A INITIALIZED size 0 flags 0 addr 0
+A DABS size 0 flags 8 addr 0
+A HOME size 0 flags 0 addr 0
+A GSINIT size 0 flags 0 addr 0
+A GSFINAL size 0 flags 0 addr 0
+A CONST size 0 flags 0 addr 0
+A INITIALIZER size 0 flags 0 addr 0
+A CODE size 13 flags 0 addr 0
+S _TIM1_ETRConfig Def000000
+A CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 00 09
+T 00 00 00 88 C6 52 53 6B 01 7B 04 1A 05 1A 06 1A
+R 00 00 00 09
+T 00 00 0D 01 C7 52 53 84 81
+R 00 00 00 09

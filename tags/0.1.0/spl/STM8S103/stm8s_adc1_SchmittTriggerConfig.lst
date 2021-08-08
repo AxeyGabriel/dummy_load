@@ -1,0 +1,147 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_adc1_SchmittTriggerConfig
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _ADC1_SchmittTriggerConfig
+                                     12 ;--------------------------------------------------------
+                                     13 ; ram data
+                                     14 ;--------------------------------------------------------
+                                     15 	.area DATA
+                                     16 ;--------------------------------------------------------
+                                     17 ; ram data
+                                     18 ;--------------------------------------------------------
+                                     19 	.area INITIALIZED
+                                     20 ;--------------------------------------------------------
+                                     21 ; absolute external ram data
+                                     22 ;--------------------------------------------------------
+                                     23 	.area DABS (ABS)
+                                     24 
+                                     25 ; default segment ordering for linker
+                                     26 	.area HOME
+                                     27 	.area GSINIT
+                                     28 	.area GSFINAL
+                                     29 	.area CONST
+                                     30 	.area INITIALIZER
+                                     31 	.area CODE
+                                     32 
+                                     33 ;--------------------------------------------------------
+                                     34 ; global & static initialisations
+                                     35 ;--------------------------------------------------------
+                                     36 	.area HOME
+                                     37 	.area GSINIT
+                                     38 	.area GSFINAL
+                                     39 	.area GSINIT
+                                     40 ;--------------------------------------------------------
+                                     41 ; Home
+                                     42 ;--------------------------------------------------------
+                                     43 	.area HOME
+                                     44 	.area HOME
+                                     45 ;--------------------------------------------------------
+                                     46 ; code
+                                     47 ;--------------------------------------------------------
+                                     48 	.area CODE
+                                     49 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 49: void ADC1_SchmittTriggerConfig(ADC1_SchmittTrigg_TypeDef ADC1_SchmittTriggerChannel, FunctionalState NewState)
+                                     50 ;	-----------------------------------------
+                                     51 ;	 function ADC1_SchmittTriggerConfig
+                                     52 ;	-----------------------------------------
+      000000                         53 _ADC1_SchmittTriggerConfig:
+      000000 88               [ 1]   54 	push	a
+                                     55 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 55: if (ADC1_SchmittTriggerChannel == ADC1_SCHMITTTRIG_ALL)
+      000001 7B 04            [ 1]   56 	ld	a, (0x04, sp)
+      000003 4C               [ 1]   57 	inc	a
+      000004 26 21            [ 1]   58 	jrne	00114$
+                                     59 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 59: ADC1->TDRL &= (uint8_t)0x0;
+      000006 C6 54 07         [ 1]   60 	ld	a, 0x5407
+                                     61 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 57: if (NewState != DISABLE)
+      000009 0D 05            [ 1]   62 	tnz	(0x05, sp)
+      00000B 27 0D            [ 1]   63 	jreq	00102$
+                                     64 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 59: ADC1->TDRL &= (uint8_t)0x0;
+      00000D 35 00 54 07      [ 1]   65 	mov	0x5407+0, #0x00
+                                     66 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 60: ADC1->TDRH &= (uint8_t)0x0;
+      000011 C6 54 06         [ 1]   67 	ld	a, 0x5406
+      000014 35 00 54 06      [ 1]   68 	mov	0x5406+0, #0x00
+      000018 20 60            [ 2]   69 	jra	00116$
+      00001A                         70 00102$:
+                                     71 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 64: ADC1->TDRL |= (uint8_t)0xFF;
+      00001A 35 FF 54 07      [ 1]   72 	mov	0x5407+0, #0xff
+                                     73 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 65: ADC1->TDRH |= (uint8_t)0xFF;
+      00001E C6 54 06         [ 1]   74 	ld	a, 0x5406
+      000021 35 FF 54 06      [ 1]   75 	mov	0x5406+0, #0xff
+      000025 20 53            [ 2]   76 	jra	00116$
+      000027                         77 00114$:
+                                     78 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 68: else if (ADC1_SchmittTriggerChannel < ADC1_SCHMITTTRIG_CHANNEL8)
+      000027 7B 04            [ 1]   79 	ld	a, (0x04, sp)
+      000029 A1 08            [ 1]   80 	cp	a, #0x08
+      00002B 24 25            [ 1]   81 	jrnc	00111$
+                                     82 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 59: ADC1->TDRL &= (uint8_t)0x0;
+      00002D C6 54 07         [ 1]   83 	ld	a, 0x5407
+      000030 6B 01            [ 1]   84 	ld	(0x01, sp), a
+                                     85 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 72: ADC1->TDRL &= (uint8_t)(~(uint8_t)((uint8_t)0x01 << (uint8_t)ADC1_SchmittTriggerChannel));
+      000032 A6 01            [ 1]   86 	ld	a, #0x01
+      000034 88               [ 1]   87 	push	a
+      000035 7B 05            [ 1]   88 	ld	a, (0x05, sp)
+      000037 27 05            [ 1]   89 	jreq	00149$
+      000039                         90 00148$:
+      000039 08 01            [ 1]   91 	sll	(1, sp)
+      00003B 4A               [ 1]   92 	dec	a
+      00003C 26 FB            [ 1]   93 	jrne	00148$
+      00003E                         94 00149$:
+      00003E 84               [ 1]   95 	pop	a
+                                     96 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 70: if (NewState != DISABLE)
+      00003F 0D 05            [ 1]   97 	tnz	(0x05, sp)
+      000041 27 08            [ 1]   98 	jreq	00105$
+                                     99 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 72: ADC1->TDRL &= (uint8_t)(~(uint8_t)((uint8_t)0x01 << (uint8_t)ADC1_SchmittTriggerChannel));
+      000043 43               [ 1]  100 	cpl	a
+      000044 14 01            [ 1]  101 	and	a, (0x01, sp)
+      000046 C7 54 07         [ 1]  102 	ld	0x5407, a
+      000049 20 2F            [ 2]  103 	jra	00116$
+      00004B                        104 00105$:
+                                    105 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 76: ADC1->TDRL |= (uint8_t)((uint8_t)0x01 << (uint8_t)ADC1_SchmittTriggerChannel);
+      00004B 1A 01            [ 1]  106 	or	a, (0x01, sp)
+      00004D C7 54 07         [ 1]  107 	ld	0x5407, a
+      000050 20 28            [ 2]  108 	jra	00116$
+      000052                        109 00111$:
+                                    110 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 60: ADC1->TDRH &= (uint8_t)0x0;
+      000052 C6 54 06         [ 1]  111 	ld	a, 0x5406
+      000055 6B 01            [ 1]  112 	ld	(0x01, sp), a
+                                    113 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 83: ADC1->TDRH &= (uint8_t)(~(uint8_t)((uint8_t)0x01 << ((uint8_t)ADC1_SchmittTriggerChannel - (uint8_t)8)));
+      000057 7B 04            [ 1]  114 	ld	a, (0x04, sp)
+      000059 A0 08            [ 1]  115 	sub	a, #0x08
+      00005B 97               [ 1]  116 	ld	xl, a
+      00005C A6 01            [ 1]  117 	ld	a, #0x01
+      00005E 88               [ 1]  118 	push	a
+      00005F 9F               [ 1]  119 	ld	a, xl
+      000060 4D               [ 1]  120 	tnz	a
+      000061 27 05            [ 1]  121 	jreq	00152$
+      000063                        122 00151$:
+      000063 08 01            [ 1]  123 	sll	(1, sp)
+      000065 4A               [ 1]  124 	dec	a
+      000066 26 FB            [ 1]  125 	jrne	00151$
+      000068                        126 00152$:
+      000068 84               [ 1]  127 	pop	a
+                                    128 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 81: if (NewState != DISABLE)
+      000069 0D 05            [ 1]  129 	tnz	(0x05, sp)
+      00006B 27 08            [ 1]  130 	jreq	00108$
+                                    131 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 83: ADC1->TDRH &= (uint8_t)(~(uint8_t)((uint8_t)0x01 << ((uint8_t)ADC1_SchmittTriggerChannel - (uint8_t)8)));
+      00006D 43               [ 1]  132 	cpl	a
+      00006E 14 01            [ 1]  133 	and	a, (0x01, sp)
+      000070 C7 54 06         [ 1]  134 	ld	0x5406, a
+      000073 20 05            [ 2]  135 	jra	00116$
+      000075                        136 00108$:
+                                    137 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 87: ADC1->TDRH |= (uint8_t)((uint8_t)0x01 << ((uint8_t)ADC1_SchmittTriggerChannel - (uint8_t)8));
+      000075 1A 01            [ 1]  138 	or	a, (0x01, sp)
+      000077 C7 54 06         [ 1]  139 	ld	0x5406, a
+      00007A                        140 00116$:
+                                    141 ;	./src/stm8s_adc1_SchmittTriggerConfig.c: 90: }
+      00007A 84               [ 1]  142 	pop	a
+      00007B 81               [ 4]  143 	ret
+                                    144 	.area CODE
+                                    145 	.area CONST
+                                    146 	.area INITIALIZER
+                                    147 	.area CABS (ABS)

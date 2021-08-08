@@ -1,0 +1,49 @@
+XH3
+H B areas 2 global symbols
+M stm8s_adc1_GetAWDChannelStatus
+O -mstm8
+S .__.ABS. Def000000
+A _CODE size 0 flags 0 addr 0
+A DATA size 0 flags 0 addr 0
+A INITIALIZED size 0 flags 0 addr 0
+A DABS size 0 flags 8 addr 0
+A HOME size 0 flags 0 addr 0
+A GSINIT size 0 flags 0 addr 0
+A GSFINAL size 0 flags 0 addr 0
+A CONST size 0 flags 0 addr 0
+A INITIALIZER size 0 flags 0 addr 0
+A CODE size 39 flags 0 addr 0
+S _ADC1_GetAWDChannelStatus Def000000
+A CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 00 09
+T 00 00 00 88 7B 04 A1 08 24 16 C6 54 0D 88 A6 01
+R 00 00 00 09
+T 00 00 0D 6B 02 7B 05 27 05
+R 00 00 00 09
+T 00 00 13
+R 00 00 00 09
+T 00 00 13 08 02 4A 26 FB
+R 00 00 00 09
+T 00 00 18
+R 00 00 00 09
+T 00 00 18 84 14 01 20 19
+R 00 00 00 09
+T 00 00 1D
+R 00 00 00 09
+T 00 00 1D C6 54 0C 97 7B 04 A0 08 88 A6 01 6B 02
+R 00 00 00 09
+T 00 00 2A 84 4D 27 05
+R 00 00 00 09
+T 00 00 2E
+R 00 00 00 09
+T 00 00 2E 08 01 4A 26 FB
+R 00 00 00 09
+T 00 00 33
+R 00 00 00 09
+T 00 00 33 9F 14 01
+R 00 00 00 09
+T 00 00 36
+R 00 00 00 09
+T 00 00 36 5B 01 81
+R 00 00 00 09

@@ -1,0 +1,95 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_flash_ProgramOptionByte
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _FLASH_WaitForLastOperation
+                                     12 	.globl _FLASH_ProgramOptionByte
+                                     13 ;--------------------------------------------------------
+                                     14 ; ram data
+                                     15 ;--------------------------------------------------------
+                                     16 	.area DATA
+                                     17 ;--------------------------------------------------------
+                                     18 ; ram data
+                                     19 ;--------------------------------------------------------
+                                     20 	.area INITIALIZED
+                                     21 ;--------------------------------------------------------
+                                     22 ; absolute external ram data
+                                     23 ;--------------------------------------------------------
+                                     24 	.area DABS (ABS)
+                                     25 
+                                     26 ; default segment ordering for linker
+                                     27 	.area HOME
+                                     28 	.area GSINIT
+                                     29 	.area GSFINAL
+                                     30 	.area CONST
+                                     31 	.area INITIALIZER
+                                     32 	.area CODE
+                                     33 
+                                     34 ;--------------------------------------------------------
+                                     35 ; global & static initialisations
+                                     36 ;--------------------------------------------------------
+                                     37 	.area HOME
+                                     38 	.area GSINIT
+                                     39 	.area GSFINAL
+                                     40 	.area GSINIT
+                                     41 ;--------------------------------------------------------
+                                     42 ; Home
+                                     43 ;--------------------------------------------------------
+                                     44 	.area HOME
+                                     45 	.area HOME
+                                     46 ;--------------------------------------------------------
+                                     47 ; code
+                                     48 ;--------------------------------------------------------
+                                     49 	.area CODE
+                                     50 ;	./src/stm8s_flash_ProgramOptionByte.c: 48: void FLASH_ProgramOptionByte(uint16_t Address, uint8_t Data)
+                                     51 ;	-----------------------------------------
+                                     52 ;	 function FLASH_ProgramOptionByte
+                                     53 ;	-----------------------------------------
+      000000                         54 _FLASH_ProgramOptionByte:
+                                     55 ;	./src/stm8s_flash_ProgramOptionByte.c: 54: FLASH->CR2 |= FLASH_CR2_OPT;
+      000000 72 1E 50 5B      [ 1]   56 	bset	20571, #7
+                                     57 ;	./src/stm8s_flash_ProgramOptionByte.c: 55: FLASH->NCR2 &= (uint8_t)(~FLASH_NCR2_NOPT);
+      000004 72 1F 50 5C      [ 1]   58 	bres	20572, #7
+                                     59 ;	./src/stm8s_flash_ProgramOptionByte.c: 61: *((NEAR uint8_t*)Address) = Data;
+      000008 1E 03            [ 2]   60 	ldw	x, (0x03, sp)
+                                     61 ;	./src/stm8s_flash_ProgramOptionByte.c: 58: if(Address == 0x4800)
+      00000A 89               [ 2]   62 	pushw	x
+      00000B 1E 05            [ 2]   63 	ldw	x, (0x05, sp)
+      00000D A3 48 00         [ 2]   64 	cpw	x, #0x4800
+      000010 85               [ 2]   65 	popw	x
+      000011 26 05            [ 1]   66 	jrne	00102$
+                                     67 ;	./src/stm8s_flash_ProgramOptionByte.c: 61: *((NEAR uint8_t*)Address) = Data;
+      000013 7B 05            [ 1]   68 	ld	a, (0x05, sp)
+      000015 F7               [ 1]   69 	ld	(x), a
+      000016 20 0A            [ 2]   70 	jra	00103$
+      000018                         71 00102$:
+                                     72 ;	./src/stm8s_flash_ProgramOptionByte.c: 66: *((NEAR uint8_t*)Address) = Data;
+      000018 7B 05            [ 1]   73 	ld	a, (0x05, sp)
+      00001A F7               [ 1]   74 	ld	(x), a
+                                     75 ;	./src/stm8s_flash_ProgramOptionByte.c: 67: *((NEAR uint8_t*)((uint16_t)(Address + 1))) = (uint8_t)(~Data);
+      00001B 1E 03            [ 2]   76 	ldw	x, (0x03, sp)
+      00001D 5C               [ 1]   77 	incw	x
+      00001E 7B 05            [ 1]   78 	ld	a, (0x05, sp)
+      000020 43               [ 1]   79 	cpl	a
+      000021 F7               [ 1]   80 	ld	(x), a
+      000022                         81 00103$:
+                                     82 ;	./src/stm8s_flash_ProgramOptionByte.c: 69: FLASH_WaitForLastOperation(FLASH_MEMTYPE_PROG);
+      000022 4B FD            [ 1]   83 	push	#0xfd
+      000024 CDr00r00         [ 4]   84 	call	_FLASH_WaitForLastOperation
+      000027 84               [ 1]   85 	pop	a
+                                     86 ;	./src/stm8s_flash_ProgramOptionByte.c: 72: FLASH->CR2 &= (uint8_t)(~FLASH_CR2_OPT);
+      000028 72 1F 50 5B      [ 1]   87 	bres	20571, #7
+                                     88 ;	./src/stm8s_flash_ProgramOptionByte.c: 73: FLASH->NCR2 |= FLASH_NCR2_NOPT;
+      00002C 72 1E 50 5C      [ 1]   89 	bset	20572, #7
+                                     90 ;	./src/stm8s_flash_ProgramOptionByte.c: 74: }
+      000030 81               [ 4]   91 	ret
+                                     92 	.area CODE
+                                     93 	.area CONST
+                                     94 	.area INITIALIZER
+                                     95 	.area CABS (ABS)

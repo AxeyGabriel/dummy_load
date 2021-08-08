@@ -1,0 +1,122 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_adc1_AWDChannelConfig
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _ADC1_AWDChannelConfig
+                                     12 ;--------------------------------------------------------
+                                     13 ; ram data
+                                     14 ;--------------------------------------------------------
+                                     15 	.area DATA
+                                     16 ;--------------------------------------------------------
+                                     17 ; ram data
+                                     18 ;--------------------------------------------------------
+                                     19 	.area INITIALIZED
+                                     20 ;--------------------------------------------------------
+                                     21 ; absolute external ram data
+                                     22 ;--------------------------------------------------------
+                                     23 	.area DABS (ABS)
+                                     24 
+                                     25 ; default segment ordering for linker
+                                     26 	.area HOME
+                                     27 	.area GSINIT
+                                     28 	.area GSFINAL
+                                     29 	.area CONST
+                                     30 	.area INITIALIZER
+                                     31 	.area CODE
+                                     32 
+                                     33 ;--------------------------------------------------------
+                                     34 ; global & static initialisations
+                                     35 ;--------------------------------------------------------
+                                     36 	.area HOME
+                                     37 	.area GSINIT
+                                     38 	.area GSFINAL
+                                     39 	.area GSINIT
+                                     40 ;--------------------------------------------------------
+                                     41 ; Home
+                                     42 ;--------------------------------------------------------
+                                     43 	.area HOME
+                                     44 	.area HOME
+                                     45 ;--------------------------------------------------------
+                                     46 ; code
+                                     47 ;--------------------------------------------------------
+                                     48 	.area CODE
+                                     49 ;	./src/stm8s_adc1_AWDChannelConfig.c: 49: void ADC1_AWDChannelConfig(ADC1_Channel_TypeDef Channel, FunctionalState NewState)
+                                     50 ;	-----------------------------------------
+                                     51 ;	 function ADC1_AWDChannelConfig
+                                     52 ;	-----------------------------------------
+      000000                         53 _ADC1_AWDChannelConfig:
+      000000 88               [ 1]   54 	push	a
+                                     55 ;	./src/stm8s_adc1_AWDChannelConfig.c: 55: if (Channel < (uint8_t)8)
+      000001 7B 04            [ 1]   56 	ld	a, (0x04, sp)
+      000003 A1 08            [ 1]   57 	cp	a, #0x08
+      000005 24 25            [ 1]   58 	jrnc	00108$
+                                     59 ;	./src/stm8s_adc1_AWDChannelConfig.c: 59: ADC1->AWCRL |= (uint8_t)((uint8_t)1 << Channel);
+      000007 C6 54 0F         [ 1]   60 	ld	a, 0x540f
+      00000A 6B 01            [ 1]   61 	ld	(0x01, sp), a
+      00000C A6 01            [ 1]   62 	ld	a, #0x01
+      00000E 88               [ 1]   63 	push	a
+      00000F 7B 05            [ 1]   64 	ld	a, (0x05, sp)
+      000011 27 05            [ 1]   65 	jreq	00129$
+      000013                         66 00128$:
+      000013 08 01            [ 1]   67 	sll	(1, sp)
+      000015 4A               [ 1]   68 	dec	a
+      000016 26 FB            [ 1]   69 	jrne	00128$
+      000018                         70 00129$:
+      000018 84               [ 1]   71 	pop	a
+                                     72 ;	./src/stm8s_adc1_AWDChannelConfig.c: 57: if (NewState != DISABLE)
+      000019 0D 05            [ 1]   73 	tnz	(0x05, sp)
+      00001B 27 07            [ 1]   74 	jreq	00102$
+                                     75 ;	./src/stm8s_adc1_AWDChannelConfig.c: 59: ADC1->AWCRL |= (uint8_t)((uint8_t)1 << Channel);
+      00001D 1A 01            [ 1]   76 	or	a, (0x01, sp)
+      00001F C7 54 0F         [ 1]   77 	ld	0x540f, a
+      000022 20 30            [ 2]   78 	jra	00110$
+      000024                         79 00102$:
+                                     80 ;	./src/stm8s_adc1_AWDChannelConfig.c: 63: ADC1->AWCRL &= (uint8_t)~(uint8_t)((uint8_t)1 << Channel);
+      000024 43               [ 1]   81 	cpl	a
+      000025 14 01            [ 1]   82 	and	a, (0x01, sp)
+      000027 C7 54 0F         [ 1]   83 	ld	0x540f, a
+      00002A 20 28            [ 2]   84 	jra	00110$
+      00002C                         85 00108$:
+                                     86 ;	./src/stm8s_adc1_AWDChannelConfig.c: 70: ADC1->AWCRH |= (uint8_t)((uint8_t)1 << (Channel - (uint8_t)8));
+      00002C C6 54 0E         [ 1]   87 	ld	a, 0x540e
+      00002F 6B 01            [ 1]   88 	ld	(0x01, sp), a
+      000031 7B 04            [ 1]   89 	ld	a, (0x04, sp)
+      000033 A0 08            [ 1]   90 	sub	a, #0x08
+      000035 97               [ 1]   91 	ld	xl, a
+      000036 A6 01            [ 1]   92 	ld	a, #0x01
+      000038 88               [ 1]   93 	push	a
+      000039 9F               [ 1]   94 	ld	a, xl
+      00003A 4D               [ 1]   95 	tnz	a
+      00003B 27 05            [ 1]   96 	jreq	00132$
+      00003D                         97 00131$:
+      00003D 08 01            [ 1]   98 	sll	(1, sp)
+      00003F 4A               [ 1]   99 	dec	a
+      000040 26 FB            [ 1]  100 	jrne	00131$
+      000042                        101 00132$:
+      000042 84               [ 1]  102 	pop	a
+                                    103 ;	./src/stm8s_adc1_AWDChannelConfig.c: 68: if (NewState != DISABLE)
+      000043 0D 05            [ 1]  104 	tnz	(0x05, sp)
+      000045 27 07            [ 1]  105 	jreq	00105$
+                                    106 ;	./src/stm8s_adc1_AWDChannelConfig.c: 70: ADC1->AWCRH |= (uint8_t)((uint8_t)1 << (Channel - (uint8_t)8));
+      000047 1A 01            [ 1]  107 	or	a, (0x01, sp)
+      000049 C7 54 0E         [ 1]  108 	ld	0x540e, a
+      00004C 20 06            [ 2]  109 	jra	00110$
+      00004E                        110 00105$:
+                                    111 ;	./src/stm8s_adc1_AWDChannelConfig.c: 74: ADC1->AWCRH &= (uint8_t)~(uint8_t)((uint8_t)1 << (uint8_t)(Channel - (uint8_t)8));
+      00004E 43               [ 1]  112 	cpl	a
+      00004F 14 01            [ 1]  113 	and	a, (0x01, sp)
+      000051 C7 54 0E         [ 1]  114 	ld	0x540e, a
+      000054                        115 00110$:
+                                    116 ;	./src/stm8s_adc1_AWDChannelConfig.c: 77: }
+      000054 84               [ 1]  117 	pop	a
+      000055 81               [ 4]  118 	ret
+                                    119 	.area CODE
+                                    120 	.area CONST
+                                    121 	.area INITIALIZER
+                                    122 	.area CABS (ABS)

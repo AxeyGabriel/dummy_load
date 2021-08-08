@@ -1,0 +1,277 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_uart1_Init
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _CLK_GetClockFreq
+                                     12 	.globl _UART1_Init
+                                     13 ;--------------------------------------------------------
+                                     14 ; ram data
+                                     15 ;--------------------------------------------------------
+                                     16 	.area DATA
+                                     17 ;--------------------------------------------------------
+                                     18 ; ram data
+                                     19 ;--------------------------------------------------------
+                                     20 	.area INITIALIZED
+                                     21 ;--------------------------------------------------------
+                                     22 ; absolute external ram data
+                                     23 ;--------------------------------------------------------
+                                     24 	.area DABS (ABS)
+                                     25 
+                                     26 ; default segment ordering for linker
+                                     27 	.area HOME
+                                     28 	.area GSINIT
+                                     29 	.area GSFINAL
+                                     30 	.area CONST
+                                     31 	.area INITIALIZER
+                                     32 	.area CODE
+                                     33 
+                                     34 ;--------------------------------------------------------
+                                     35 ; global & static initialisations
+                                     36 ;--------------------------------------------------------
+                                     37 	.area HOME
+                                     38 	.area GSINIT
+                                     39 	.area GSFINAL
+                                     40 	.area GSINIT
+                                     41 ;--------------------------------------------------------
+                                     42 ; Home
+                                     43 ;--------------------------------------------------------
+                                     44 	.area HOME
+                                     45 	.area HOME
+                                     46 ;--------------------------------------------------------
+                                     47 ; code
+                                     48 ;--------------------------------------------------------
+                                     49 	.area CODE
+                                     50 ;	./src/stm8s_uart1_Init.c: 58: void UART1_Init(uint32_t BaudRate, UART1_WordLength_TypeDef WordLength, 
+                                     51 ;	-----------------------------------------
+                                     52 ;	 function UART1_Init
+                                     53 ;	-----------------------------------------
+      000000                         54 _UART1_Init:
+      000000 52 11            [ 2]   55 	sub	sp, #17
+                                     56 ;	./src/stm8s_uart1_Init.c: 73: UART1->CR1 &= (uint8_t)(~UART1_CR1_M);  
+      000002 72 19 52 34      [ 1]   57 	bres	21044, #4
+                                     58 ;	./src/stm8s_uart1_Init.c: 76: UART1->CR1 |= (uint8_t)WordLength;
+      000006 C6 52 34         [ 1]   59 	ld	a, 0x5234
+      000009 1A 18            [ 1]   60 	or	a, (0x18, sp)
+      00000B C7 52 34         [ 1]   61 	ld	0x5234, a
+                                     62 ;	./src/stm8s_uart1_Init.c: 79: UART1->CR3 &= (uint8_t)(~UART1_CR3_STOP);  
+      00000E C6 52 36         [ 1]   63 	ld	a, 0x5236
+      000011 A4 CF            [ 1]   64 	and	a, #0xcf
+      000013 C7 52 36         [ 1]   65 	ld	0x5236, a
+                                     66 ;	./src/stm8s_uart1_Init.c: 81: UART1->CR3 |= (uint8_t)StopBits;  
+      000016 C6 52 36         [ 1]   67 	ld	a, 0x5236
+      000019 1A 19            [ 1]   68 	or	a, (0x19, sp)
+      00001B C7 52 36         [ 1]   69 	ld	0x5236, a
+                                     70 ;	./src/stm8s_uart1_Init.c: 84: UART1->CR1 &= (uint8_t)(~(UART1_CR1_PCEN | UART1_CR1_PS  ));  
+      00001E C6 52 34         [ 1]   71 	ld	a, 0x5234
+      000021 A4 F9            [ 1]   72 	and	a, #0xf9
+      000023 C7 52 34         [ 1]   73 	ld	0x5234, a
+                                     74 ;	./src/stm8s_uart1_Init.c: 86: UART1->CR1 |= (uint8_t)Parity;  
+      000026 C6 52 34         [ 1]   75 	ld	a, 0x5234
+      000029 1A 1A            [ 1]   76 	or	a, (0x1a, sp)
+      00002B C7 52 34         [ 1]   77 	ld	0x5234, a
+                                     78 ;	./src/stm8s_uart1_Init.c: 89: UART1->BRR1 &= (uint8_t)(~UART1_BRR1_DIVM);  
+      00002E C6 52 32         [ 1]   79 	ld	a, 0x5232
+      000031 35 00 52 32      [ 1]   80 	mov	0x5232+0, #0x00
+                                     81 ;	./src/stm8s_uart1_Init.c: 91: UART1->BRR2 &= (uint8_t)(~UART1_BRR2_DIVM);  
+      000035 C6 52 33         [ 1]   82 	ld	a, 0x5233
+      000038 A4 0F            [ 1]   83 	and	a, #0x0f
+      00003A C7 52 33         [ 1]   84 	ld	0x5233, a
+                                     85 ;	./src/stm8s_uart1_Init.c: 93: UART1->BRR2 &= (uint8_t)(~UART1_BRR2_DIVF);  
+      00003D C6 52 33         [ 1]   86 	ld	a, 0x5233
+      000040 A4 F0            [ 1]   87 	and	a, #0xf0
+      000042 C7 52 33         [ 1]   88 	ld	0x5233, a
+                                     89 ;	./src/stm8s_uart1_Init.c: 96: BaudRate_Mantissa    = ((uint32_t)CLK_GetClockFreq() / (BaudRate << 4));
+      000045 CDr00r00         [ 4]   90 	call	_CLK_GetClockFreq
+      000048 1F 10            [ 2]   91 	ldw	(0x10, sp), x
+      00004A 1E 14            [ 2]   92 	ldw	x, (0x14, sp)
+      00004C 1F 0A            [ 2]   93 	ldw	(0x0a, sp), x
+      00004E 1E 16            [ 2]   94 	ldw	x, (0x16, sp)
+      000050 A6 04            [ 1]   95 	ld	a, #0x04
+      000052                         96 00127$:
+      000052 58               [ 2]   97 	sllw	x
+      000053 09 0B            [ 1]   98 	rlc	(0x0b, sp)
+      000055 09 0A            [ 1]   99 	rlc	(0x0a, sp)
+      000057 4A               [ 1]  100 	dec	a
+      000058 26 F8            [ 1]  101 	jrne	00127$
+      00005A 1F 0C            [ 2]  102 	ldw	(0x0c, sp), x
+      00005C 89               [ 2]  103 	pushw	x
+      00005D 1E 0C            [ 2]  104 	ldw	x, (0x0c, sp)
+      00005F 89               [ 2]  105 	pushw	x
+      000060 1E 14            [ 2]  106 	ldw	x, (0x14, sp)
+      000062 89               [ 2]  107 	pushw	x
+      000063 90 89            [ 2]  108 	pushw	y
+      000065 CDr00r00         [ 4]  109 	call	__divulong
+      000068 5B 08            [ 2]  110 	addw	sp, #8
+      00006A 1F 10            [ 2]  111 	ldw	(0x10, sp), x
+      00006C 17 0E            [ 2]  112 	ldw	(0x0e, sp), y
+      00006E 16 10            [ 2]  113 	ldw	y, (0x10, sp)
+      000070 17 03            [ 2]  114 	ldw	(0x03, sp), y
+      000072 16 0E            [ 2]  115 	ldw	y, (0x0e, sp)
+      000074 17 01            [ 2]  116 	ldw	(0x01, sp), y
+                                    117 ;	./src/stm8s_uart1_Init.c: 97: BaudRate_Mantissa100 = (((uint32_t)CLK_GetClockFreq() * 100) / (BaudRate << 4));
+      000076 CDr00r00         [ 4]  118 	call	_CLK_GetClockFreq
+      000079 1F 10            [ 2]  119 	ldw	(0x10, sp), x
+      00007B 17 0E            [ 2]  120 	ldw	(0x0e, sp), y
+      00007D 1E 10            [ 2]  121 	ldw	x, (0x10, sp)
+      00007F 89               [ 2]  122 	pushw	x
+      000080 1E 10            [ 2]  123 	ldw	x, (0x10, sp)
+      000082 89               [ 2]  124 	pushw	x
+      000083 4B 64            [ 1]  125 	push	#0x64
+      000085 5F               [ 1]  126 	clrw	x
+      000086 89               [ 2]  127 	pushw	x
+      000087 4B 00            [ 1]  128 	push	#0x00
+      000089 CDr00r00         [ 4]  129 	call	__mullong
+      00008C 5B 08            [ 2]  130 	addw	sp, #8
+      00008E 1F 10            [ 2]  131 	ldw	(0x10, sp), x
+      000090 1E 0C            [ 2]  132 	ldw	x, (0x0c, sp)
+      000092 89               [ 2]  133 	pushw	x
+      000093 1E 0C            [ 2]  134 	ldw	x, (0x0c, sp)
+      000095 89               [ 2]  135 	pushw	x
+      000096 1E 14            [ 2]  136 	ldw	x, (0x14, sp)
+      000098 89               [ 2]  137 	pushw	x
+      000099 90 89            [ 2]  138 	pushw	y
+      00009B CDr00r00         [ 4]  139 	call	__divulong
+      00009E 5B 08            [ 2]  140 	addw	sp, #8
+      0000A0 1F 07            [ 2]  141 	ldw	(0x07, sp), x
+      0000A2 17 05            [ 2]  142 	ldw	(0x05, sp), y
+                                    143 ;	./src/stm8s_uart1_Init.c: 99: UART1->BRR2 |= (uint8_t)((uint8_t)(((BaudRate_Mantissa100 - (BaudRate_Mantissa * 100)) << 4) / 100) & (uint8_t)0x0F); 
+      0000A4 C6 52 33         [ 1]  144 	ld	a, 0x5233
+      0000A7 6B 09            [ 1]  145 	ld	(0x09, sp), a
+      0000A9 1E 03            [ 2]  146 	ldw	x, (0x03, sp)
+      0000AB 89               [ 2]  147 	pushw	x
+      0000AC 1E 03            [ 2]  148 	ldw	x, (0x03, sp)
+      0000AE 89               [ 2]  149 	pushw	x
+      0000AF 4B 64            [ 1]  150 	push	#0x64
+      0000B1 5F               [ 1]  151 	clrw	x
+      0000B2 89               [ 2]  152 	pushw	x
+      0000B3 4B 00            [ 1]  153 	push	#0x00
+      0000B5 CDr00r00         [ 4]  154 	call	__mullong
+      0000B8 5B 08            [ 2]  155 	addw	sp, #8
+      0000BA 1F 0C            [ 2]  156 	ldw	(0x0c, sp), x
+      0000BC 17 0A            [ 2]  157 	ldw	(0x0a, sp), y
+      0000BE 1E 07            [ 2]  158 	ldw	x, (0x07, sp)
+      0000C0 72 F0 0C         [ 2]  159 	subw	x, (0x0c, sp)
+      0000C3 1F 10            [ 2]  160 	ldw	(0x10, sp), x
+      0000C5 7B 06            [ 1]  161 	ld	a, (0x06, sp)
+      0000C7 12 0B            [ 1]  162 	sbc	a, (0x0b, sp)
+      0000C9 6B 0F            [ 1]  163 	ld	(0x0f, sp), a
+      0000CB 7B 05            [ 1]  164 	ld	a, (0x05, sp)
+      0000CD 12 0A            [ 1]  165 	sbc	a, (0x0a, sp)
+      0000CF 6B 0E            [ 1]  166 	ld	(0x0e, sp), a
+      0000D1 1E 10            [ 2]  167 	ldw	x, (0x10, sp)
+      0000D3 16 0E            [ 2]  168 	ldw	y, (0x0e, sp)
+      0000D5 A6 04            [ 1]  169 	ld	a, #0x04
+      0000D7                        170 00129$:
+      0000D7 58               [ 2]  171 	sllw	x
+      0000D8 90 59            [ 2]  172 	rlcw	y
+      0000DA 4A               [ 1]  173 	dec	a
+      0000DB 26 FA            [ 1]  174 	jrne	00129$
+      0000DD 4B 64            [ 1]  175 	push	#0x64
+      0000DF 4B 00            [ 1]  176 	push	#0x00
+      0000E1 4B 00            [ 1]  177 	push	#0x00
+      0000E3 4B 00            [ 1]  178 	push	#0x00
+      0000E5 89               [ 2]  179 	pushw	x
+      0000E6 90 89            [ 2]  180 	pushw	y
+      0000E8 CDr00r00         [ 4]  181 	call	__divulong
+      0000EB 5B 08            [ 2]  182 	addw	sp, #8
+      0000ED 9F               [ 1]  183 	ld	a, xl
+      0000EE A4 0F            [ 1]  184 	and	a, #0x0f
+      0000F0 1A 09            [ 1]  185 	or	a, (0x09, sp)
+      0000F2 C7 52 33         [ 1]  186 	ld	0x5233, a
+                                    187 ;	./src/stm8s_uart1_Init.c: 101: UART1->BRR2 |= (uint8_t)((BaudRate_Mantissa >> 4) & (uint8_t)0xF0); 
+      0000F5 C6 52 33         [ 1]  188 	ld	a, 0x5233
+      0000F8 6B 11            [ 1]  189 	ld	(0x11, sp), a
+      0000FA 1E 03            [ 2]  190 	ldw	x, (0x03, sp)
+      0000FC A6 10            [ 1]  191 	ld	a, #0x10
+      0000FE 62               [ 2]  192 	div	x, a
+      0000FF 9F               [ 1]  193 	ld	a, xl
+      000100 A4 F0            [ 1]  194 	and	a, #0xf0
+      000102 1A 11            [ 1]  195 	or	a, (0x11, sp)
+      000104 C7 52 33         [ 1]  196 	ld	0x5233, a
+                                    197 ;	./src/stm8s_uart1_Init.c: 103: UART1->BRR1 |= (uint8_t)BaudRate_Mantissa;           
+      000107 C6 52 32         [ 1]  198 	ld	a, 0x5232
+      00010A 6B 11            [ 1]  199 	ld	(0x11, sp), a
+      00010C 7B 04            [ 1]  200 	ld	a, (0x04, sp)
+      00010E 1A 11            [ 1]  201 	or	a, (0x11, sp)
+      000110 C7 52 32         [ 1]  202 	ld	0x5232, a
+                                    203 ;	./src/stm8s_uart1_Init.c: 106: UART1->CR2 &= (uint8_t)~(UART1_CR2_TEN | UART1_CR2_REN); 
+      000113 C6 52 35         [ 1]  204 	ld	a, 0x5235
+      000116 A4 F3            [ 1]  205 	and	a, #0xf3
+      000118 C7 52 35         [ 1]  206 	ld	0x5235, a
+                                    207 ;	./src/stm8s_uart1_Init.c: 108: UART1->CR3 &= (uint8_t)~(UART1_CR3_CPOL | UART1_CR3_CPHA | UART1_CR3_LBCL); 
+      00011B C6 52 36         [ 1]  208 	ld	a, 0x5236
+      00011E A4 F8            [ 1]  209 	and	a, #0xf8
+      000120 C7 52 36         [ 1]  210 	ld	0x5236, a
+                                    211 ;	./src/stm8s_uart1_Init.c: 110: UART1->CR3 |= (uint8_t)((uint8_t)SyncMode & (uint8_t)(UART1_CR3_CPOL | 
+      000123 C6 52 36         [ 1]  212 	ld	a, 0x5236
+      000126 6B 11            [ 1]  213 	ld	(0x11, sp), a
+      000128 7B 1B            [ 1]  214 	ld	a, (0x1b, sp)
+      00012A A4 07            [ 1]  215 	and	a, #0x07
+      00012C 1A 11            [ 1]  216 	or	a, (0x11, sp)
+      00012E C7 52 36         [ 1]  217 	ld	0x5236, a
+                                    218 ;	./src/stm8s_uart1_Init.c: 106: UART1->CR2 &= (uint8_t)~(UART1_CR2_TEN | UART1_CR2_REN); 
+      000131 C6 52 35         [ 1]  219 	ld	a, 0x5235
+                                    220 ;	./src/stm8s_uart1_Init.c: 113: if ((uint8_t)(Mode & UART1_MODE_TX_ENABLE))
+      000134 88               [ 1]  221 	push	a
+      000135 7B 1D            [ 1]  222 	ld	a, (0x1d, sp)
+      000137 A5 04            [ 1]  223 	bcp	a, #0x04
+      000139 84               [ 1]  224 	pop	a
+      00013A 27 07            [ 1]  225 	jreq	00102$
+                                    226 ;	./src/stm8s_uart1_Init.c: 116: UART1->CR2 |= (uint8_t)UART1_CR2_TEN;  
+      00013C AA 08            [ 1]  227 	or	a, #0x08
+      00013E C7 52 35         [ 1]  228 	ld	0x5235, a
+      000141 20 05            [ 2]  229 	jra	00103$
+      000143                        230 00102$:
+                                    231 ;	./src/stm8s_uart1_Init.c: 121: UART1->CR2 &= (uint8_t)(~UART1_CR2_TEN);  
+      000143 A4 F7            [ 1]  232 	and	a, #0xf7
+      000145 C7 52 35         [ 1]  233 	ld	0x5235, a
+      000148                        234 00103$:
+                                    235 ;	./src/stm8s_uart1_Init.c: 106: UART1->CR2 &= (uint8_t)~(UART1_CR2_TEN | UART1_CR2_REN); 
+      000148 C6 52 35         [ 1]  236 	ld	a, 0x5235
+                                    237 ;	./src/stm8s_uart1_Init.c: 123: if ((uint8_t)(Mode & UART1_MODE_RX_ENABLE))
+      00014B 88               [ 1]  238 	push	a
+      00014C 7B 1D            [ 1]  239 	ld	a, (0x1d, sp)
+      00014E A5 08            [ 1]  240 	bcp	a, #0x08
+      000150 84               [ 1]  241 	pop	a
+      000151 27 07            [ 1]  242 	jreq	00105$
+                                    243 ;	./src/stm8s_uart1_Init.c: 126: UART1->CR2 |= (uint8_t)UART1_CR2_REN;  
+      000153 AA 04            [ 1]  244 	or	a, #0x04
+      000155 C7 52 35         [ 1]  245 	ld	0x5235, a
+      000158 20 05            [ 2]  246 	jra	00106$
+      00015A                        247 00105$:
+                                    248 ;	./src/stm8s_uart1_Init.c: 131: UART1->CR2 &= (uint8_t)(~UART1_CR2_REN);  
+      00015A A4 FB            [ 1]  249 	and	a, #0xfb
+      00015C C7 52 35         [ 1]  250 	ld	0x5235, a
+      00015F                        251 00106$:
+                                    252 ;	./src/stm8s_uart1_Init.c: 79: UART1->CR3 &= (uint8_t)(~UART1_CR3_STOP);  
+      00015F C6 52 36         [ 1]  253 	ld	a, 0x5236
+                                    254 ;	./src/stm8s_uart1_Init.c: 135: if ((uint8_t)(SyncMode & UART1_SYNCMODE_CLOCK_DISABLE))
+      000162 0D 1B            [ 1]  255 	tnz	(0x1b, sp)
+      000164 2A 07            [ 1]  256 	jrpl	00108$
+                                    257 ;	./src/stm8s_uart1_Init.c: 138: UART1->CR3 &= (uint8_t)(~UART1_CR3_CKEN); 
+      000166 A4 F7            [ 1]  258 	and	a, #0xf7
+      000168 C7 52 36         [ 1]  259 	ld	0x5236, a
+      00016B 20 0D            [ 2]  260 	jra	00110$
+      00016D                        261 00108$:
+                                    262 ;	./src/stm8s_uart1_Init.c: 142: UART1->CR3 |= (uint8_t)((uint8_t)SyncMode & UART1_CR3_CKEN);
+      00016D 88               [ 1]  263 	push	a
+      00016E 7B 1C            [ 1]  264 	ld	a, (0x1c, sp)
+      000170 A4 08            [ 1]  265 	and	a, #0x08
+      000172 6B 12            [ 1]  266 	ld	(0x12, sp), a
+      000174 84               [ 1]  267 	pop	a
+      000175 1A 11            [ 1]  268 	or	a, (0x11, sp)
+      000177 C7 52 36         [ 1]  269 	ld	0x5236, a
+      00017A                        270 00110$:
+                                    271 ;	./src/stm8s_uart1_Init.c: 144: }
+      00017A 5B 11            [ 2]  272 	addw	sp, #17
+      00017C 81               [ 4]  273 	ret
+                                    274 	.area CODE
+                                    275 	.area CONST
+                                    276 	.area INITIALIZER
+                                    277 	.area CABS (ABS)

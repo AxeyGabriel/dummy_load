@@ -1,0 +1,118 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_tim2_ICInit
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _TIM2_TI3_Config
+                                     12 	.globl _TIM2_TI2_Config
+                                     13 	.globl _TIM2_TI1_Config
+                                     14 	.globl _TIM2_SetIC3Prescaler
+                                     15 	.globl _TIM2_SetIC2Prescaler
+                                     16 	.globl _TIM2_SetIC1Prescaler
+                                     17 	.globl _TIM2_ICInit
+                                     18 ;--------------------------------------------------------
+                                     19 ; ram data
+                                     20 ;--------------------------------------------------------
+                                     21 	.area DATA
+                                     22 ;--------------------------------------------------------
+                                     23 ; ram data
+                                     24 ;--------------------------------------------------------
+                                     25 	.area INITIALIZED
+                                     26 ;--------------------------------------------------------
+                                     27 ; absolute external ram data
+                                     28 ;--------------------------------------------------------
+                                     29 	.area DABS (ABS)
+                                     30 
+                                     31 ; default segment ordering for linker
+                                     32 	.area HOME
+                                     33 	.area GSINIT
+                                     34 	.area GSFINAL
+                                     35 	.area CONST
+                                     36 	.area INITIALIZER
+                                     37 	.area CODE
+                                     38 
+                                     39 ;--------------------------------------------------------
+                                     40 ; global & static initialisations
+                                     41 ;--------------------------------------------------------
+                                     42 	.area HOME
+                                     43 	.area GSINIT
+                                     44 	.area GSFINAL
+                                     45 	.area GSINIT
+                                     46 ;--------------------------------------------------------
+                                     47 ; Home
+                                     48 ;--------------------------------------------------------
+                                     49 	.area HOME
+                                     50 	.area HOME
+                                     51 ;--------------------------------------------------------
+                                     52 ; code
+                                     53 ;--------------------------------------------------------
+                                     54 	.area CODE
+                                     55 ;	./src/stm8s_tim2_ICInit.c: 51: void TIM2_ICInit(TIM2_Channel_TypeDef TIM2_Channel,
+                                     56 ;	-----------------------------------------
+                                     57 ;	 function TIM2_ICInit
+                                     58 ;	-----------------------------------------
+      000000                         59 _TIM2_ICInit:
+                                     60 ;	./src/stm8s_tim2_ICInit.c: 64: if (TIM2_Channel == TIM2_CHANNEL_1)
+      000000 0D 03            [ 1]   61 	tnz	(0x03, sp)
+      000002 26 16            [ 1]   62 	jrne	00105$
+                                     63 ;	./src/stm8s_tim2_ICInit.c: 67: TIM2_TI1_Config((uint8_t)TIM2_ICPolarity,
+      000004 7B 07            [ 1]   64 	ld	a, (0x07, sp)
+      000006 88               [ 1]   65 	push	a
+      000007 7B 06            [ 1]   66 	ld	a, (0x06, sp)
+      000009 88               [ 1]   67 	push	a
+      00000A 7B 06            [ 1]   68 	ld	a, (0x06, sp)
+      00000C 88               [ 1]   69 	push	a
+      00000D CDr00r00         [ 4]   70 	call	_TIM2_TI1_Config
+      000010 5B 03            [ 2]   71 	addw	sp, #3
+                                     72 ;	./src/stm8s_tim2_ICInit.c: 72: TIM2_SetIC1Prescaler(TIM2_ICPrescaler);
+      000012 7B 06            [ 1]   73 	ld	a, (0x06, sp)
+      000014 88               [ 1]   74 	push	a
+      000015 CDr00r00         [ 4]   75 	call	_TIM2_SetIC1Prescaler
+      000018 84               [ 1]   76 	pop	a
+      000019 81               [ 4]   77 	ret
+      00001A                         78 00105$:
+                                     79 ;	./src/stm8s_tim2_ICInit.c: 74: else if (TIM2_Channel == TIM2_CHANNEL_2)
+      00001A 7B 03            [ 1]   80 	ld	a, (0x03, sp)
+      00001C 4A               [ 1]   81 	dec	a
+      00001D 26 16            [ 1]   82 	jrne	00102$
+                                     83 ;	./src/stm8s_tim2_ICInit.c: 77: TIM2_TI2_Config((uint8_t)TIM2_ICPolarity,
+      00001F 7B 07            [ 1]   84 	ld	a, (0x07, sp)
+      000021 88               [ 1]   85 	push	a
+      000022 7B 06            [ 1]   86 	ld	a, (0x06, sp)
+      000024 88               [ 1]   87 	push	a
+      000025 7B 06            [ 1]   88 	ld	a, (0x06, sp)
+      000027 88               [ 1]   89 	push	a
+      000028 CDr00r00         [ 4]   90 	call	_TIM2_TI2_Config
+      00002B 5B 03            [ 2]   91 	addw	sp, #3
+                                     92 ;	./src/stm8s_tim2_ICInit.c: 82: TIM2_SetIC2Prescaler(TIM2_ICPrescaler);
+      00002D 7B 06            [ 1]   93 	ld	a, (0x06, sp)
+      00002F 88               [ 1]   94 	push	a
+      000030 CDr00r00         [ 4]   95 	call	_TIM2_SetIC2Prescaler
+      000033 84               [ 1]   96 	pop	a
+      000034 81               [ 4]   97 	ret
+      000035                         98 00102$:
+                                     99 ;	./src/stm8s_tim2_ICInit.c: 87: TIM2_TI3_Config((uint8_t)TIM2_ICPolarity,
+      000035 7B 07            [ 1]  100 	ld	a, (0x07, sp)
+      000037 88               [ 1]  101 	push	a
+      000038 7B 06            [ 1]  102 	ld	a, (0x06, sp)
+      00003A 88               [ 1]  103 	push	a
+      00003B 7B 06            [ 1]  104 	ld	a, (0x06, sp)
+      00003D 88               [ 1]  105 	push	a
+      00003E CDr00r00         [ 4]  106 	call	_TIM2_TI3_Config
+      000041 5B 03            [ 2]  107 	addw	sp, #3
+                                    108 ;	./src/stm8s_tim2_ICInit.c: 92: TIM2_SetIC3Prescaler(TIM2_ICPrescaler);
+      000043 7B 06            [ 1]  109 	ld	a, (0x06, sp)
+      000045 88               [ 1]  110 	push	a
+      000046 CDr00r00         [ 4]  111 	call	_TIM2_SetIC3Prescaler
+      000049 84               [ 1]  112 	pop	a
+                                    113 ;	./src/stm8s_tim2_ICInit.c: 94: }
+      00004A 81               [ 4]  114 	ret
+                                    115 	.area CODE
+                                    116 	.area CONST
+                                    117 	.area INITIALIZER
+                                    118 	.area CABS (ABS)

@@ -1,0 +1,69 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_spi_DeInit
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _SPI_DeInit
+                                     12 ;--------------------------------------------------------
+                                     13 ; ram data
+                                     14 ;--------------------------------------------------------
+                                     15 	.area DATA
+                                     16 ;--------------------------------------------------------
+                                     17 ; ram data
+                                     18 ;--------------------------------------------------------
+                                     19 	.area INITIALIZED
+                                     20 ;--------------------------------------------------------
+                                     21 ; absolute external ram data
+                                     22 ;--------------------------------------------------------
+                                     23 	.area DABS (ABS)
+                                     24 
+                                     25 ; default segment ordering for linker
+                                     26 	.area HOME
+                                     27 	.area GSINIT
+                                     28 	.area GSFINAL
+                                     29 	.area CONST
+                                     30 	.area INITIALIZER
+                                     31 	.area CODE
+                                     32 
+                                     33 ;--------------------------------------------------------
+                                     34 ; global & static initialisations
+                                     35 ;--------------------------------------------------------
+                                     36 	.area HOME
+                                     37 	.area GSINIT
+                                     38 	.area GSFINAL
+                                     39 	.area GSINIT
+                                     40 ;--------------------------------------------------------
+                                     41 ; Home
+                                     42 ;--------------------------------------------------------
+                                     43 	.area HOME
+                                     44 	.area HOME
+                                     45 ;--------------------------------------------------------
+                                     46 ; code
+                                     47 ;--------------------------------------------------------
+                                     48 	.area CODE
+                                     49 ;	./src/stm8s_spi_DeInit.c: 46: void SPI_DeInit(void)
+                                     50 ;	-----------------------------------------
+                                     51 ;	 function SPI_DeInit
+                                     52 ;	-----------------------------------------
+      000000                         53 _SPI_DeInit:
+                                     54 ;	./src/stm8s_spi_DeInit.c: 48: SPI->CR1    = SPI_CR1_RESET_VALUE;
+      000000 35 00 52 00      [ 1]   55 	mov	0x5200+0, #0x00
+                                     56 ;	./src/stm8s_spi_DeInit.c: 49: SPI->CR2    = SPI_CR2_RESET_VALUE;
+      000004 35 00 52 01      [ 1]   57 	mov	0x5201+0, #0x00
+                                     58 ;	./src/stm8s_spi_DeInit.c: 50: SPI->ICR    = SPI_ICR_RESET_VALUE;
+      000008 35 00 52 02      [ 1]   59 	mov	0x5202+0, #0x00
+                                     60 ;	./src/stm8s_spi_DeInit.c: 51: SPI->SR     = SPI_SR_RESET_VALUE;
+      00000C 35 02 52 03      [ 1]   61 	mov	0x5203+0, #0x02
+                                     62 ;	./src/stm8s_spi_DeInit.c: 52: SPI->CRCPR  = SPI_CRCPR_RESET_VALUE;
+      000010 35 07 52 05      [ 1]   63 	mov	0x5205+0, #0x07
+                                     64 ;	./src/stm8s_spi_DeInit.c: 53: }
+      000014 81               [ 4]   65 	ret
+                                     66 	.area CODE
+                                     67 	.area CONST
+                                     68 	.area INITIALIZER
+                                     69 	.area CABS (ABS)

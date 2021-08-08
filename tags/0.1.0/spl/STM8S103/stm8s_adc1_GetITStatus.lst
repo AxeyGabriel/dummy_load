@@ -1,0 +1,122 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_adc1_GetITStatus
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _ADC1_GetITStatus
+                                     12 ;--------------------------------------------------------
+                                     13 ; ram data
+                                     14 ;--------------------------------------------------------
+                                     15 	.area DATA
+                                     16 ;--------------------------------------------------------
+                                     17 ; ram data
+                                     18 ;--------------------------------------------------------
+                                     19 	.area INITIALIZED
+                                     20 ;--------------------------------------------------------
+                                     21 ; absolute external ram data
+                                     22 ;--------------------------------------------------------
+                                     23 	.area DABS (ABS)
+                                     24 
+                                     25 ; default segment ordering for linker
+                                     26 	.area HOME
+                                     27 	.area GSINIT
+                                     28 	.area GSFINAL
+                                     29 	.area CONST
+                                     30 	.area INITIALIZER
+                                     31 	.area CODE
+                                     32 
+                                     33 ;--------------------------------------------------------
+                                     34 ; global & static initialisations
+                                     35 ;--------------------------------------------------------
+                                     36 	.area HOME
+                                     37 	.area GSINIT
+                                     38 	.area GSFINAL
+                                     39 	.area GSINIT
+                                     40 ;--------------------------------------------------------
+                                     41 ; Home
+                                     42 ;--------------------------------------------------------
+                                     43 	.area HOME
+                                     44 	.area HOME
+                                     45 ;--------------------------------------------------------
+                                     46 ; code
+                                     47 ;--------------------------------------------------------
+                                     48 	.area CODE
+                                     49 ;	./src/stm8s_adc1_GetITStatus.c: 59: ITStatus ADC1_GetITStatus(ADC1_IT_TypeDef ITPendingBit)
+                                     50 ;	-----------------------------------------
+                                     51 ;	 function ADC1_GetITStatus
+                                     52 ;	-----------------------------------------
+      000000                         53 _ADC1_GetITStatus:
+      000000 88               [ 1]   54 	push	a
+                                     55 ;	./src/stm8s_adc1_GetITStatus.c: 67: if (((uint16_t)ITPendingBit & 0xF0) == 0x10)
+      000001 7B 05            [ 1]   56 	ld	a, (0x05, sp)
+      000003 A4 F0            [ 1]   57 	and	a, #0xf0
+      000005 97               [ 1]   58 	ld	xl, a
+      000006 4F               [ 1]   59 	clr	a
+      000007 95               [ 1]   60 	ld	xh, a
+                                     61 ;	./src/stm8s_adc1_GetITStatus.c: 70: temp = (uint8_t)((uint16_t)ITPendingBit & 0x0F);
+      000008 7B 05            [ 1]   62 	ld	a, (0x05, sp)
+                                     63 ;	./src/stm8s_adc1_GetITStatus.c: 67: if (((uint16_t)ITPendingBit & 0xF0) == 0x10)
+      00000A A3 00 10         [ 2]   64 	cpw	x, #0x0010
+      00000D 26 36            [ 1]   65 	jrne	00105$
+                                     66 ;	./src/stm8s_adc1_GetITStatus.c: 70: temp = (uint8_t)((uint16_t)ITPendingBit & 0x0F);
+      00000F A4 0F            [ 1]   67 	and	a, #0x0f
+                                     68 ;	./src/stm8s_adc1_GetITStatus.c: 71: if (temp < 8)
+      000011 97               [ 1]   69 	ld	xl, a
+      000012 A1 08            [ 1]   70 	cp	a, #0x08
+      000014 24 16            [ 1]   71 	jrnc	00102$
+                                     72 ;	./src/stm8s_adc1_GetITStatus.c: 73: itstatus = (ITStatus)(ADC1->AWSRL & (uint8_t)((uint8_t)1 << temp));
+      000016 C6 54 0D         [ 1]   73 	ld	a, 0x540d
+      000019 88               [ 1]   74 	push	a
+      00001A A6 01            [ 1]   75 	ld	a, #0x01
+      00001C 6B 02            [ 1]   76 	ld	(0x02, sp), a
+      00001E 9F               [ 1]   77 	ld	a, xl
+      00001F 4D               [ 1]   78 	tnz	a
+      000020 27 05            [ 1]   79 	jreq	00124$
+      000022                         80 00123$:
+      000022 08 02            [ 1]   81 	sll	(0x02, sp)
+      000024 4A               [ 1]   82 	dec	a
+      000025 26 FB            [ 1]   83 	jrne	00123$
+      000027                         84 00124$:
+      000027 84               [ 1]   85 	pop	a
+      000028 14 01            [ 1]   86 	and	a, (0x01, sp)
+      00002A 20 23            [ 2]   87 	jra	00106$
+      00002C                         88 00102$:
+                                     89 ;	./src/stm8s_adc1_GetITStatus.c: 77: itstatus = (ITStatus)(ADC1->AWSRH & (uint8_t)((uint8_t)1 << (temp - 8)));
+      00002C C6 54 0C         [ 1]   90 	ld	a, 0x540c
+      00002F 6B 01            [ 1]   91 	ld	(0x01, sp), a
+      000031 1D 00 08         [ 2]   92 	subw	x, #8
+      000034 A6 01            [ 1]   93 	ld	a, #0x01
+      000036 88               [ 1]   94 	push	a
+      000037 9F               [ 1]   95 	ld	a, xl
+      000038 4D               [ 1]   96 	tnz	a
+      000039 27 05            [ 1]   97 	jreq	00126$
+      00003B                         98 00125$:
+      00003B 08 01            [ 1]   99 	sll	(1, sp)
+      00003D 4A               [ 1]  100 	dec	a
+      00003E 26 FB            [ 1]  101 	jrne	00125$
+      000040                        102 00126$:
+      000040 84               [ 1]  103 	pop	a
+      000041 14 01            [ 1]  104 	and	a, (0x01, sp)
+      000043 20 0A            [ 2]  105 	jra	00106$
+      000045                        106 00105$:
+                                    107 ;	./src/stm8s_adc1_GetITStatus.c: 82: itstatus = (ITStatus)(ADC1->CSR & (uint8_t)ITPendingBit);
+      000045 AE 54 00         [ 2]  108 	ldw	x, #0x5400
+      000048 88               [ 1]  109 	push	a
+      000049 F6               [ 1]  110 	ld	a, (x)
+      00004A 6B 02            [ 1]  111 	ld	(0x02, sp), a
+      00004C 84               [ 1]  112 	pop	a
+      00004D 14 01            [ 1]  113 	and	a, (0x01, sp)
+      00004F                        114 00106$:
+                                    115 ;	./src/stm8s_adc1_GetITStatus.c: 84: return ((ITStatus)itstatus);
+                                    116 ;	./src/stm8s_adc1_GetITStatus.c: 85: }
+      00004F 5B 01            [ 2]  117 	addw	sp, #1
+      000051 81               [ 4]  118 	ret
+                                    119 	.area CODE
+                                    120 	.area CONST
+                                    121 	.area INITIALIZER
+                                    122 	.area CABS (ABS)

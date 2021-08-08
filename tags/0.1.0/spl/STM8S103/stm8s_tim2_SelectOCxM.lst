@@ -1,0 +1,94 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_tim2_SelectOCxM
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _TIM2_SelectOCxM
+                                     12 ;--------------------------------------------------------
+                                     13 ; ram data
+                                     14 ;--------------------------------------------------------
+                                     15 	.area DATA
+                                     16 ;--------------------------------------------------------
+                                     17 ; ram data
+                                     18 ;--------------------------------------------------------
+                                     19 	.area INITIALIZED
+                                     20 ;--------------------------------------------------------
+                                     21 ; absolute external ram data
+                                     22 ;--------------------------------------------------------
+                                     23 	.area DABS (ABS)
+                                     24 
+                                     25 ; default segment ordering for linker
+                                     26 	.area HOME
+                                     27 	.area GSINIT
+                                     28 	.area GSFINAL
+                                     29 	.area CONST
+                                     30 	.area INITIALIZER
+                                     31 	.area CODE
+                                     32 
+                                     33 ;--------------------------------------------------------
+                                     34 ; global & static initialisations
+                                     35 ;--------------------------------------------------------
+                                     36 	.area HOME
+                                     37 	.area GSINIT
+                                     38 	.area GSFINAL
+                                     39 	.area GSINIT
+                                     40 ;--------------------------------------------------------
+                                     41 ; Home
+                                     42 ;--------------------------------------------------------
+                                     43 	.area HOME
+                                     44 	.area HOME
+                                     45 ;--------------------------------------------------------
+                                     46 ; code
+                                     47 ;--------------------------------------------------------
+                                     48 	.area CODE
+                                     49 ;	./src/stm8s_tim2_SelectOCxM.c: 62: void TIM2_SelectOCxM(TIM2_Channel_TypeDef TIM2_Channel, TIM2_OCMode_TypeDef TIM2_OCMode)
+                                     50 ;	-----------------------------------------
+                                     51 ;	 function TIM2_SelectOCxM
+                                     52 ;	-----------------------------------------
+      000000                         53 _TIM2_SelectOCxM:
+                                     54 ;	./src/stm8s_tim2_SelectOCxM.c: 68: if (TIM2_Channel == TIM2_CHANNEL_1)
+      000000 0D 03            [ 1]   55 	tnz	(0x03, sp)
+      000002 26 0F            [ 1]   56 	jrne	00105$
+                                     57 ;	./src/stm8s_tim2_SelectOCxM.c: 71: TIM2->CCER1 &= (uint8_t)(~TIM2_CCER1_CC1E);
+      000004 72 11 53 0A      [ 1]   58 	bres	21258, #0
+                                     59 ;	./src/stm8s_tim2_SelectOCxM.c: 74: TIM2->CCMR1 = (uint8_t)((uint8_t)(TIM2->CCMR1 & (uint8_t)(~TIM2_CCMR_OCM))
+      000008 C6 53 07         [ 1]   60 	ld	a, 0x5307
+      00000B A4 8F            [ 1]   61 	and	a, #0x8f
+                                     62 ;	./src/stm8s_tim2_SelectOCxM.c: 75: | (uint8_t)TIM2_OCMode);
+      00000D 1A 04            [ 1]   63 	or	a, (0x04, sp)
+      00000F C7 53 07         [ 1]   64 	ld	0x5307, a
+      000012 81               [ 4]   65 	ret
+      000013                         66 00105$:
+                                     67 ;	./src/stm8s_tim2_SelectOCxM.c: 77: else if (TIM2_Channel == TIM2_CHANNEL_2)
+      000013 7B 03            [ 1]   68 	ld	a, (0x03, sp)
+      000015 4A               [ 1]   69 	dec	a
+      000016 26 0F            [ 1]   70 	jrne	00102$
+                                     71 ;	./src/stm8s_tim2_SelectOCxM.c: 80: TIM2->CCER1 &= (uint8_t)(~TIM2_CCER1_CC2E);
+      000018 72 19 53 0A      [ 1]   72 	bres	21258, #4
+                                     73 ;	./src/stm8s_tim2_SelectOCxM.c: 83: TIM2->CCMR2 = (uint8_t)((uint8_t)(TIM2->CCMR2 & (uint8_t)(~TIM2_CCMR_OCM))
+      00001C C6 53 08         [ 1]   74 	ld	a, 0x5308
+      00001F A4 8F            [ 1]   75 	and	a, #0x8f
+                                     76 ;	./src/stm8s_tim2_SelectOCxM.c: 84: | (uint8_t)TIM2_OCMode);
+      000021 1A 04            [ 1]   77 	or	a, (0x04, sp)
+      000023 C7 53 08         [ 1]   78 	ld	0x5308, a
+      000026 81               [ 4]   79 	ret
+      000027                         80 00102$:
+                                     81 ;	./src/stm8s_tim2_SelectOCxM.c: 89: TIM2->CCER2 &= (uint8_t)(~TIM2_CCER2_CC3E);
+      000027 72 11 53 0B      [ 1]   82 	bres	21259, #0
+                                     83 ;	./src/stm8s_tim2_SelectOCxM.c: 92: TIM2->CCMR3 = (uint8_t)((uint8_t)(TIM2->CCMR3 & (uint8_t)(~TIM2_CCMR_OCM))
+      00002B C6 53 09         [ 1]   84 	ld	a, 0x5309
+      00002E A4 8F            [ 1]   85 	and	a, #0x8f
+                                     86 ;	./src/stm8s_tim2_SelectOCxM.c: 93: | (uint8_t)TIM2_OCMode);
+      000030 1A 04            [ 1]   87 	or	a, (0x04, sp)
+      000032 C7 53 09         [ 1]   88 	ld	0x5309, a
+                                     89 ;	./src/stm8s_tim2_SelectOCxM.c: 95: }
+      000035 81               [ 4]   90 	ret
+                                     91 	.area CODE
+                                     92 	.area CONST
+                                     93 	.area INITIALIZER
+                                     94 	.area CABS (ABS)

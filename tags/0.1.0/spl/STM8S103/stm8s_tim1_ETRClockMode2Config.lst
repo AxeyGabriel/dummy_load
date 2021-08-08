@@ -1,0 +1,71 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_tim1_ETRClockMode2Config
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _TIM1_ETRConfig
+                                     12 	.globl _TIM1_ETRClockMode2Config
+                                     13 ;--------------------------------------------------------
+                                     14 ; ram data
+                                     15 ;--------------------------------------------------------
+                                     16 	.area DATA
+                                     17 ;--------------------------------------------------------
+                                     18 ; ram data
+                                     19 ;--------------------------------------------------------
+                                     20 	.area INITIALIZED
+                                     21 ;--------------------------------------------------------
+                                     22 ; absolute external ram data
+                                     23 ;--------------------------------------------------------
+                                     24 	.area DABS (ABS)
+                                     25 
+                                     26 ; default segment ordering for linker
+                                     27 	.area HOME
+                                     28 	.area GSINIT
+                                     29 	.area GSFINAL
+                                     30 	.area CONST
+                                     31 	.area INITIALIZER
+                                     32 	.area CODE
+                                     33 
+                                     34 ;--------------------------------------------------------
+                                     35 ; global & static initialisations
+                                     36 ;--------------------------------------------------------
+                                     37 	.area HOME
+                                     38 	.area GSINIT
+                                     39 	.area GSFINAL
+                                     40 	.area GSINIT
+                                     41 ;--------------------------------------------------------
+                                     42 ; Home
+                                     43 ;--------------------------------------------------------
+                                     44 	.area HOME
+                                     45 	.area HOME
+                                     46 ;--------------------------------------------------------
+                                     47 ; code
+                                     48 ;--------------------------------------------------------
+                                     49 	.area CODE
+                                     50 ;	./src/stm8s_tim1_ETRClockMode2Config.c: 58: void TIM1_ETRClockMode2Config(TIM1_ExtTRGPSC_TypeDef TIM1_ExtTRGPrescaler,
+                                     51 ;	-----------------------------------------
+                                     52 ;	 function TIM1_ETRClockMode2Config
+                                     53 ;	-----------------------------------------
+      000000                         54 _TIM1_ETRClockMode2Config:
+                                     55 ;	./src/stm8s_tim1_ETRClockMode2Config.c: 67: TIM1_ETRConfig(TIM1_ExtTRGPrescaler, TIM1_ExtTRGPolarity, ExtTRGFilter);
+      000000 7B 05            [ 1]   56 	ld	a, (0x05, sp)
+      000002 88               [ 1]   57 	push	a
+      000003 7B 05            [ 1]   58 	ld	a, (0x05, sp)
+      000005 88               [ 1]   59 	push	a
+      000006 7B 05            [ 1]   60 	ld	a, (0x05, sp)
+      000008 88               [ 1]   61 	push	a
+      000009 CDr00r00         [ 4]   62 	call	_TIM1_ETRConfig
+      00000C 5B 03            [ 2]   63 	addw	sp, #3
+                                     64 ;	./src/stm8s_tim1_ETRClockMode2Config.c: 70: TIM1->ETR |= TIM1_ETR_ECE;
+      00000E 72 1C 52 53      [ 1]   65 	bset	21075, #6
+                                     66 ;	./src/stm8s_tim1_ETRClockMode2Config.c: 71: }
+      000012 81               [ 4]   67 	ret
+                                     68 	.area CODE
+                                     69 	.area CONST
+                                     70 	.area INITIALIZER
+                                     71 	.area CABS (ABS)

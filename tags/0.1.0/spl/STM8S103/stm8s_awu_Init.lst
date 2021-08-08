@@ -1,0 +1,91 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_awu_Init
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _AWU_Init
+                                     12 ;--------------------------------------------------------
+                                     13 ; ram data
+                                     14 ;--------------------------------------------------------
+                                     15 	.area DATA
+                                     16 ;--------------------------------------------------------
+                                     17 ; ram data
+                                     18 ;--------------------------------------------------------
+                                     19 	.area INITIALIZED
+                                     20 ;--------------------------------------------------------
+                                     21 ; absolute external ram data
+                                     22 ;--------------------------------------------------------
+                                     23 	.area DABS (ABS)
+                                     24 
+                                     25 ; default segment ordering for linker
+                                     26 	.area HOME
+                                     27 	.area GSINIT
+                                     28 	.area GSFINAL
+                                     29 	.area CONST
+                                     30 	.area INITIALIZER
+                                     31 	.area CODE
+                                     32 
+                                     33 ;--------------------------------------------------------
+                                     34 ; global & static initialisations
+                                     35 ;--------------------------------------------------------
+                                     36 	.area HOME
+                                     37 	.area GSINIT
+                                     38 	.area GSFINAL
+                                     39 	.area GSINIT
+                                     40 ;--------------------------------------------------------
+                                     41 ; Home
+                                     42 ;--------------------------------------------------------
+                                     43 	.area HOME
+                                     44 	.area HOME
+                                     45 ;--------------------------------------------------------
+                                     46 ; code
+                                     47 ;--------------------------------------------------------
+                                     48 	.area CODE
+                                     49 ;	./src/stm8s_awu_Init.c: 50: void AWU_Init(AWU_Timebase_TypeDef AWU_TimeBase)
+                                     50 ;	-----------------------------------------
+                                     51 ;	 function AWU_Init
+                                     52 ;	-----------------------------------------
+      000000                         53 _AWU_Init:
+      000000 88               [ 1]   54 	push	a
+                                     55 ;	./src/stm8s_awu_Init.c: 56: AWU->CSR |= AWU_CSR_AWUEN;
+      000001 72 18 50 F0      [ 1]   56 	bset	20720, #4
+                                     57 ;	./src/stm8s_awu_Init.c: 59: AWU->TBR &= (uint8_t)(~AWU_TBR_AWUTB);
+      000005 C6 50 F2         [ 1]   58 	ld	a, 0x50f2
+      000008 A4 F0            [ 1]   59 	and	a, #0xf0
+      00000A C7 50 F2         [ 1]   60 	ld	0x50f2, a
+                                     61 ;	./src/stm8s_awu_Init.c: 60: AWU->TBR |= TBR_Array[(uint8_t)AWU_TimeBase];
+      00000D C6 50 F2         [ 1]   62 	ld	a, 0x50f2
+      000010 6B 01            [ 1]   63 	ld	(0x01, sp), a
+      000012 5F               [ 1]   64 	clrw	x
+      000013 7B 04            [ 1]   65 	ld	a, (0x04, sp)
+      000015 97               [ 1]   66 	ld	xl, a
+      000016 1Cr00r00         [ 2]   67 	addw	x, #(_TBR_Array + 0)
+      000019 F6               [ 1]   68 	ld	a, (x)
+      00001A 1A 01            [ 1]   69 	or	a, (0x01, sp)
+      00001C C7 50 F2         [ 1]   70 	ld	0x50f2, a
+                                     71 ;	./src/stm8s_awu_Init.c: 63: AWU->APR &= (uint8_t)(~AWU_APR_APR);
+      00001F C6 50 F1         [ 1]   72 	ld	a, 0x50f1
+      000022 A4 C0            [ 1]   73 	and	a, #0xc0
+      000024 C7 50 F1         [ 1]   74 	ld	0x50f1, a
+                                     75 ;	./src/stm8s_awu_Init.c: 64: AWU->APR |= APR_Array[(uint8_t)AWU_TimeBase];
+      000027 C6 50 F1         [ 1]   76 	ld	a, 0x50f1
+      00002A 6B 01            [ 1]   77 	ld	(0x01, sp), a
+      00002C 5F               [ 1]   78 	clrw	x
+      00002D 7B 04            [ 1]   79 	ld	a, (0x04, sp)
+      00002F 97               [ 1]   80 	ld	xl, a
+      000030 1Cr00r00         [ 2]   81 	addw	x, #(_APR_Array + 0)
+      000033 F6               [ 1]   82 	ld	a, (x)
+      000034 1A 01            [ 1]   83 	or	a, (0x01, sp)
+      000036 C7 50 F1         [ 1]   84 	ld	0x50f1, a
+                                     85 ;	./src/stm8s_awu_Init.c: 65: }
+      000039 84               [ 1]   86 	pop	a
+      00003A 81               [ 4]   87 	ret
+                                     88 	.area CODE
+                                     89 	.area CONST
+                                     90 	.area INITIALIZER
+                                     91 	.area CABS (ABS)

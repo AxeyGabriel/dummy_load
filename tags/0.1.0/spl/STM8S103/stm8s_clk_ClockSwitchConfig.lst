@@ -1,0 +1,194 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_clk_ClockSwitchConfig
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _CLK_ClockSwitchConfig
+                                     12 ;--------------------------------------------------------
+                                     13 ; ram data
+                                     14 ;--------------------------------------------------------
+                                     15 	.area DATA
+                                     16 ;--------------------------------------------------------
+                                     17 ; ram data
+                                     18 ;--------------------------------------------------------
+                                     19 	.area INITIALIZED
+                                     20 ;--------------------------------------------------------
+                                     21 ; absolute external ram data
+                                     22 ;--------------------------------------------------------
+                                     23 	.area DABS (ABS)
+                                     24 
+                                     25 ; default segment ordering for linker
+                                     26 	.area HOME
+                                     27 	.area GSINIT
+                                     28 	.area GSFINAL
+                                     29 	.area CONST
+                                     30 	.area INITIALIZER
+                                     31 	.area CODE
+                                     32 
+                                     33 ;--------------------------------------------------------
+                                     34 ; global & static initialisations
+                                     35 ;--------------------------------------------------------
+                                     36 	.area HOME
+                                     37 	.area GSINIT
+                                     38 	.area GSFINAL
+                                     39 	.area GSINIT
+                                     40 ;--------------------------------------------------------
+                                     41 ; Home
+                                     42 ;--------------------------------------------------------
+                                     43 	.area HOME
+                                     44 	.area HOME
+                                     45 ;--------------------------------------------------------
+                                     46 ; code
+                                     47 ;--------------------------------------------------------
+                                     48 	.area CODE
+                                     49 ;	./src/stm8s_clk_ClockSwitchConfig.c: 54: ErrorStatus CLK_ClockSwitchConfig(CLK_SwitchMode_TypeDef CLK_SwitchMode, CLK_Source_TypeDef CLK_NewClock, FunctionalState ITState, CLK_CurrentClockState_TypeDef CLK_CurrentClockState)
+                                     50 ;	-----------------------------------------
+                                     51 ;	 function CLK_ClockSwitchConfig
+                                     52 ;	-----------------------------------------
+      000000                         53 _CLK_ClockSwitchConfig:
+                                     54 ;	./src/stm8s_clk_ClockSwitchConfig.c: 67: clock_master = (CLK_Source_TypeDef)CLK->CMSR;
+      000000 C6 50 C3         [ 1]   55 	ld	a, 0x50c3
+      000003 90 97            [ 1]   56 	ld	yl, a
+                                     57 ;	./src/stm8s_clk_ClockSwitchConfig.c: 73: CLK->SWCR |= CLK_SWCR_SWEN;
+      000005 C6 50 C5         [ 1]   58 	ld	a, 0x50c5
+                                     59 ;	./src/stm8s_clk_ClockSwitchConfig.c: 70: if (CLK_SwitchMode == CLK_SWITCHMODE_AUTO)
+      000008 88               [ 1]   60 	push	a
+      000009 7B 04            [ 1]   61 	ld	a, (0x04, sp)
+      00000B 4A               [ 1]   62 	dec	a
+      00000C 84               [ 1]   63 	pop	a
+      00000D 26 38            [ 1]   64 	jrne	00122$
+                                     65 ;	./src/stm8s_clk_ClockSwitchConfig.c: 73: CLK->SWCR |= CLK_SWCR_SWEN;
+      00000F AA 02            [ 1]   66 	or	a, #0x02
+      000011 C7 50 C5         [ 1]   67 	ld	0x50c5, a
+      000014 C6 50 C5         [ 1]   68 	ld	a, 0x50c5
+                                     69 ;	./src/stm8s_clk_ClockSwitchConfig.c: 76: if (ITState != DISABLE)
+      000017 0D 05            [ 1]   70 	tnz	(0x05, sp)
+      000019 27 07            [ 1]   71 	jreq	00102$
+                                     72 ;	./src/stm8s_clk_ClockSwitchConfig.c: 78: CLK->SWCR |= CLK_SWCR_SWIEN;
+      00001B AA 04            [ 1]   73 	or	a, #0x04
+      00001D C7 50 C5         [ 1]   74 	ld	0x50c5, a
+      000020 20 05            [ 2]   75 	jra	00103$
+      000022                         76 00102$:
+                                     77 ;	./src/stm8s_clk_ClockSwitchConfig.c: 82: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWIEN);
+      000022 A4 FB            [ 1]   78 	and	a, #0xfb
+      000024 C7 50 C5         [ 1]   79 	ld	0x50c5, a
+      000027                         80 00103$:
+                                     81 ;	./src/stm8s_clk_ClockSwitchConfig.c: 86: CLK->SWR = (uint8_t)CLK_NewClock;
+      000027 AE 50 C4         [ 2]   82 	ldw	x, #0x50c4
+      00002A 7B 04            [ 1]   83 	ld	a, (0x04, sp)
+      00002C F7               [ 1]   84 	ld	(x), a
+                                     85 ;	./src/stm8s_clk_ClockSwitchConfig.c: 89: while((((CLK->SWCR & CLK_SWCR_SWBSY) != 0 )&& (DownCounter != 0)))
+      00002D 5F               [ 1]   86 	clrw	x
+      00002E 5A               [ 2]   87 	decw	x
+      00002F                         88 00105$:
+      00002F C6 50 C5         [ 1]   89 	ld	a, 0x50c5
+      000032 44               [ 1]   90 	srl	a
+      000033 24 06            [ 1]   91 	jrnc	00107$
+      000035 5D               [ 2]   92 	tnzw	x
+      000036 27 03            [ 1]   93 	jreq	00107$
+                                     94 ;	./src/stm8s_clk_ClockSwitchConfig.c: 91: DownCounter--;
+      000038 5A               [ 2]   95 	decw	x
+      000039 20 F4            [ 2]   96 	jra	00105$
+      00003B                         97 00107$:
+                                     98 ;	./src/stm8s_clk_ClockSwitchConfig.c: 94: if(DownCounter != 0)
+      00003B 5D               [ 2]   99 	tnzw	x
+      00003C 27 05            [ 1]  100 	jreq	00109$
+                                    101 ;	./src/stm8s_clk_ClockSwitchConfig.c: 96: Swif = SUCCESS;
+      00003E A6 01            [ 1]  102 	ld	a, #0x01
+      000040 97               [ 1]  103 	ld	xl, a
+      000041 20 37            [ 2]  104 	jra	00123$
+      000043                        105 00109$:
+                                    106 ;	./src/stm8s_clk_ClockSwitchConfig.c: 100: Swif = ERROR;
+      000043 4F               [ 1]  107 	clr	a
+      000044 97               [ 1]  108 	ld	xl, a
+      000045 20 33            [ 2]  109 	jra	00123$
+      000047                        110 00122$:
+                                    111 ;	./src/stm8s_clk_ClockSwitchConfig.c: 106: if (ITState != DISABLE)
+      000047 0D 05            [ 1]  112 	tnz	(0x05, sp)
+      000049 27 07            [ 1]  113 	jreq	00112$
+                                    114 ;	./src/stm8s_clk_ClockSwitchConfig.c: 108: CLK->SWCR |= CLK_SWCR_SWIEN;
+      00004B AA 04            [ 1]  115 	or	a, #0x04
+      00004D C7 50 C5         [ 1]  116 	ld	0x50c5, a
+      000050 20 05            [ 2]  117 	jra	00113$
+      000052                        118 00112$:
+                                    119 ;	./src/stm8s_clk_ClockSwitchConfig.c: 112: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWIEN);
+      000052 A4 FB            [ 1]  120 	and	a, #0xfb
+      000054 C7 50 C5         [ 1]  121 	ld	0x50c5, a
+      000057                        122 00113$:
+                                    123 ;	./src/stm8s_clk_ClockSwitchConfig.c: 116: CLK->SWR = (uint8_t)CLK_NewClock;
+      000057 AE 50 C4         [ 2]  124 	ldw	x, #0x50c4
+      00005A 7B 04            [ 1]  125 	ld	a, (0x04, sp)
+      00005C F7               [ 1]  126 	ld	(x), a
+                                    127 ;	./src/stm8s_clk_ClockSwitchConfig.c: 119: while((((CLK->SWCR & CLK_SWCR_SWIF) != 0 ) && (DownCounter != 0)))
+      00005D 5F               [ 1]  128 	clrw	x
+      00005E 5A               [ 2]  129 	decw	x
+      00005F                        130 00115$:
+      00005F C6 50 C5         [ 1]  131 	ld	a, 0x50c5
+      000062 A5 08            [ 1]  132 	bcp	a, #0x08
+      000064 27 06            [ 1]  133 	jreq	00117$
+      000066 5D               [ 2]  134 	tnzw	x
+      000067 27 03            [ 1]  135 	jreq	00117$
+                                    136 ;	./src/stm8s_clk_ClockSwitchConfig.c: 121: DownCounter--;
+      000069 5A               [ 2]  137 	decw	x
+      00006A 20 F3            [ 2]  138 	jra	00115$
+      00006C                        139 00117$:
+                                    140 ;	./src/stm8s_clk_ClockSwitchConfig.c: 124: if(DownCounter != 0)
+      00006C 5D               [ 2]  141 	tnzw	x
+      00006D 27 09            [ 1]  142 	jreq	00119$
+                                    143 ;	./src/stm8s_clk_ClockSwitchConfig.c: 127: CLK->SWCR |= CLK_SWCR_SWEN;
+      00006F 72 12 50 C5      [ 1]  144 	bset	20677, #1
+                                    145 ;	./src/stm8s_clk_ClockSwitchConfig.c: 128: Swif = SUCCESS;
+      000073 A6 01            [ 1]  146 	ld	a, #0x01
+      000075 97               [ 1]  147 	ld	xl, a
+      000076 20 02            [ 2]  148 	jra	00123$
+      000078                        149 00119$:
+                                    150 ;	./src/stm8s_clk_ClockSwitchConfig.c: 132: Swif = ERROR;
+      000078 4F               [ 1]  151 	clr	a
+      000079 97               [ 1]  152 	ld	xl, a
+      00007A                        153 00123$:
+                                    154 ;	./src/stm8s_clk_ClockSwitchConfig.c: 135: if(Swif != ERROR)
+      00007A 9F               [ 1]  155 	ld	a, xl
+      00007B 4D               [ 1]  156 	tnz	a
+      00007C 27 2E            [ 1]  157 	jreq	00136$
+                                    158 ;	./src/stm8s_clk_ClockSwitchConfig.c: 138: if((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_HSI))
+      00007E 0D 06            [ 1]  159 	tnz	(0x06, sp)
+      000080 26 0C            [ 1]  160 	jrne	00132$
+      000082 90 9F            [ 1]  161 	ld	a, yl
+      000084 A1 E1            [ 1]  162 	cp	a, #0xe1
+      000086 26 06            [ 1]  163 	jrne	00132$
+                                    164 ;	./src/stm8s_clk_ClockSwitchConfig.c: 140: CLK->ICKR &= (uint8_t)(~CLK_ICKR_HSIEN);
+      000088 72 11 50 C0      [ 1]  165 	bres	20672, #0
+      00008C 20 1E            [ 2]  166 	jra	00136$
+      00008E                        167 00132$:
+                                    168 ;	./src/stm8s_clk_ClockSwitchConfig.c: 142: else if((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_LSI))
+      00008E 0D 06            [ 1]  169 	tnz	(0x06, sp)
+      000090 26 0C            [ 1]  170 	jrne	00128$
+      000092 90 9F            [ 1]  171 	ld	a, yl
+      000094 A1 D2            [ 1]  172 	cp	a, #0xd2
+      000096 26 06            [ 1]  173 	jrne	00128$
+                                    174 ;	./src/stm8s_clk_ClockSwitchConfig.c: 144: CLK->ICKR &= (uint8_t)(~CLK_ICKR_LSIEN);
+      000098 72 17 50 C0      [ 1]  175 	bres	20672, #3
+      00009C 20 0E            [ 2]  176 	jra	00136$
+      00009E                        177 00128$:
+                                    178 ;	./src/stm8s_clk_ClockSwitchConfig.c: 146: else if ((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_HSE))
+      00009E 0D 06            [ 1]  179 	tnz	(0x06, sp)
+      0000A0 26 0A            [ 1]  180 	jrne	00136$
+      0000A2 90 9F            [ 1]  181 	ld	a, yl
+      0000A4 A1 B4            [ 1]  182 	cp	a, #0xb4
+      0000A6 26 04            [ 1]  183 	jrne	00136$
+                                    184 ;	./src/stm8s_clk_ClockSwitchConfig.c: 148: CLK->ECKR &= (uint8_t)(~CLK_ECKR_HSEEN);
+      0000A8 72 11 50 C1      [ 1]  185 	bres	20673, #0
+      0000AC                        186 00136$:
+                                    187 ;	./src/stm8s_clk_ClockSwitchConfig.c: 151: return(Swif);
+      0000AC 9F               [ 1]  188 	ld	a, xl
+                                    189 ;	./src/stm8s_clk_ClockSwitchConfig.c: 152: }
+      0000AD 81               [ 4]  190 	ret
+                                    191 	.area CODE
+                                    192 	.area CONST
+                                    193 	.area INITIALIZER
+                                    194 	.area CABS (ABS)

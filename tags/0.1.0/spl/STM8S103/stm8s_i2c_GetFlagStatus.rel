@@ -1,0 +1,43 @@
+XH3
+H B areas 2 global symbols
+M stm8s_i2c_GetFlagStatus
+O -mstm8
+S .__.ABS. Def000000
+A _CODE size 0 flags 0 addr 0
+A DATA size 0 flags 0 addr 0
+A INITIALIZED size 0 flags 0 addr 0
+A DABS size 0 flags 8 addr 0
+A HOME size 0 flags 0 addr 0
+A GSINIT size 0 flags 0 addr 0
+A GSFINAL size 0 flags 0 addr 0
+A CONST size 0 flags 0 addr 0
+A INITIALIZER size 0 flags 0 addr 0
+A CODE size 32 flags 0 addr 0
+S _I2C_GetFlagStatus Def000000
+A CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 00 09
+T 00 00 00 4F 97 7B 03 90 5F A1 01 27 0A A1 02 27
+R 00 00 00 09
+T 00 00 0D 0C A1 03 27 0E 20 10
+R 00 00 00 09
+T 00 00 14
+R 00 00 00 09
+T 00 00 14 C6 52 17 97 20 0A
+R 00 00 00 09
+T 00 00 1A
+R 00 00 00 09
+T 00 00 1A C6 52 18 97 20 04
+R 00 00 00 09
+T 00 00 20
+R 00 00 00 09
+T 00 00 20 C6 52 19 97
+R 00 00 00 09
+T 00 00 24
+R 00 00 00 09
+T 00 00 24 7B 04 89 14 02 85 4D 27 03 A6 01 81
+R 00 00 00 09
+T 00 00 30
+R 00 00 00 09
+T 00 00 30 4F 81
+R 00 00 00 09

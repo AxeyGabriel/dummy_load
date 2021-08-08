@@ -1,0 +1,128 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.9.0 #11195 (FreeBSD)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_tim1_CCxCmd
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _TIM1_CCxCmd
+                                     12 ;--------------------------------------------------------
+                                     13 ; ram data
+                                     14 ;--------------------------------------------------------
+                                     15 	.area DATA
+                                     16 ;--------------------------------------------------------
+                                     17 ; ram data
+                                     18 ;--------------------------------------------------------
+                                     19 	.area INITIALIZED
+                                     20 ;--------------------------------------------------------
+                                     21 ; absolute external ram data
+                                     22 ;--------------------------------------------------------
+                                     23 	.area DABS (ABS)
+                                     24 
+                                     25 ; default segment ordering for linker
+                                     26 	.area HOME
+                                     27 	.area GSINIT
+                                     28 	.area GSFINAL
+                                     29 	.area CONST
+                                     30 	.area INITIALIZER
+                                     31 	.area CODE
+                                     32 
+                                     33 ;--------------------------------------------------------
+                                     34 ; global & static initialisations
+                                     35 ;--------------------------------------------------------
+                                     36 	.area HOME
+                                     37 	.area GSINIT
+                                     38 	.area GSFINAL
+                                     39 	.area GSINIT
+                                     40 ;--------------------------------------------------------
+                                     41 ; Home
+                                     42 ;--------------------------------------------------------
+                                     43 	.area HOME
+                                     44 	.area HOME
+                                     45 ;--------------------------------------------------------
+                                     46 ; code
+                                     47 ;--------------------------------------------------------
+                                     48 	.area CODE
+                                     49 ;	./src/stm8s_tim1_CCxCmd.c: 54: void TIM1_CCxCmd(TIM1_Channel_TypeDef TIM1_Channel, FunctionalState NewState)
+                                     50 ;	-----------------------------------------
+                                     51 ;	 function TIM1_CCxCmd
+                                     52 ;	-----------------------------------------
+      000000                         53 _TIM1_CCxCmd:
+                                     54 ;	./src/stm8s_tim1_CCxCmd.c: 60: if (TIM1_Channel == TIM1_CHANNEL_1)
+      000000 0D 03            [ 1]   55 	tnz	(0x03, sp)
+      000002 26 13            [ 1]   56 	jrne	00120$
+                                     57 ;	./src/stm8s_tim1_CCxCmd.c: 65: TIM1->CCER1 |= TIM1_CCER1_CC1E;
+      000004 C6 52 5C         [ 1]   58 	ld	a, 0x525c
+                                     59 ;	./src/stm8s_tim1_CCxCmd.c: 63: if (NewState != DISABLE)
+      000007 0D 04            [ 1]   60 	tnz	(0x04, sp)
+      000009 27 06            [ 1]   61 	jreq	00102$
+                                     62 ;	./src/stm8s_tim1_CCxCmd.c: 65: TIM1->CCER1 |= TIM1_CCER1_CC1E;
+      00000B AA 01            [ 1]   63 	or	a, #0x01
+      00000D C7 52 5C         [ 1]   64 	ld	0x525c, a
+      000010 81               [ 4]   65 	ret
+      000011                         66 00102$:
+                                     67 ;	./src/stm8s_tim1_CCxCmd.c: 69: TIM1->CCER1 &= (uint8_t)(~TIM1_CCER1_CC1E);
+      000011 A4 FE            [ 1]   68 	and	a, #0xfe
+      000013 C7 52 5C         [ 1]   69 	ld	0x525c, a
+      000016 81               [ 4]   70 	ret
+      000017                         71 00120$:
+                                     72 ;	./src/stm8s_tim1_CCxCmd.c: 73: else if (TIM1_Channel == TIM1_CHANNEL_2)
+      000017 7B 03            [ 1]   73 	ld	a, (0x03, sp)
+      000019 4A               [ 1]   74 	dec	a
+      00001A 26 13            [ 1]   75 	jrne	00117$
+                                     76 ;	./src/stm8s_tim1_CCxCmd.c: 65: TIM1->CCER1 |= TIM1_CCER1_CC1E;
+      00001C C6 52 5C         [ 1]   77 	ld	a, 0x525c
+                                     78 ;	./src/stm8s_tim1_CCxCmd.c: 76: if (NewState != DISABLE)
+      00001F 0D 04            [ 1]   79 	tnz	(0x04, sp)
+      000021 27 06            [ 1]   80 	jreq	00105$
+                                     81 ;	./src/stm8s_tim1_CCxCmd.c: 78: TIM1->CCER1 |= TIM1_CCER1_CC2E;
+      000023 AA 10            [ 1]   82 	or	a, #0x10
+      000025 C7 52 5C         [ 1]   83 	ld	0x525c, a
+      000028 81               [ 4]   84 	ret
+      000029                         85 00105$:
+                                     86 ;	./src/stm8s_tim1_CCxCmd.c: 82: TIM1->CCER1 &= (uint8_t)(~TIM1_CCER1_CC2E);
+      000029 A4 EF            [ 1]   87 	and	a, #0xef
+      00002B C7 52 5C         [ 1]   88 	ld	0x525c, a
+      00002E 81               [ 4]   89 	ret
+      00002F                         90 00117$:
+                                     91 ;	./src/stm8s_tim1_CCxCmd.c: 90: TIM1->CCER2 |= TIM1_CCER2_CC3E;
+      00002F C6 52 5D         [ 1]   92 	ld	a, 0x525d
+                                     93 ;	./src/stm8s_tim1_CCxCmd.c: 85: else if (TIM1_Channel == TIM1_CHANNEL_3)
+      000032 88               [ 1]   94 	push	a
+      000033 7B 04            [ 1]   95 	ld	a, (0x04, sp)
+      000035 A1 02            [ 1]   96 	cp	a, #0x02
+      000037 84               [ 1]   97 	pop	a
+      000038 26 10            [ 1]   98 	jrne	00114$
+                                     99 ;	./src/stm8s_tim1_CCxCmd.c: 88: if (NewState != DISABLE)
+      00003A 0D 04            [ 1]  100 	tnz	(0x04, sp)
+      00003C 27 06            [ 1]  101 	jreq	00108$
+                                    102 ;	./src/stm8s_tim1_CCxCmd.c: 90: TIM1->CCER2 |= TIM1_CCER2_CC3E;
+      00003E AA 01            [ 1]  103 	or	a, #0x01
+      000040 C7 52 5D         [ 1]  104 	ld	0x525d, a
+      000043 81               [ 4]  105 	ret
+      000044                        106 00108$:
+                                    107 ;	./src/stm8s_tim1_CCxCmd.c: 94: TIM1->CCER2 &= (uint8_t)(~TIM1_CCER2_CC3E);
+      000044 A4 FE            [ 1]  108 	and	a, #0xfe
+      000046 C7 52 5D         [ 1]  109 	ld	0x525d, a
+      000049 81               [ 4]  110 	ret
+      00004A                        111 00114$:
+                                    112 ;	./src/stm8s_tim1_CCxCmd.c: 100: if (NewState != DISABLE)
+      00004A 0D 04            [ 1]  113 	tnz	(0x04, sp)
+      00004C 27 06            [ 1]  114 	jreq	00111$
+                                    115 ;	./src/stm8s_tim1_CCxCmd.c: 102: TIM1->CCER2 |= TIM1_CCER2_CC4E;
+      00004E AA 10            [ 1]  116 	or	a, #0x10
+      000050 C7 52 5D         [ 1]  117 	ld	0x525d, a
+      000053 81               [ 4]  118 	ret
+      000054                        119 00111$:
+                                    120 ;	./src/stm8s_tim1_CCxCmd.c: 106: TIM1->CCER2 &= (uint8_t)(~TIM1_CCER2_CC4E);
+      000054 A4 EF            [ 1]  121 	and	a, #0xef
+      000056 C7 52 5D         [ 1]  122 	ld	0x525d, a
+                                    123 ;	./src/stm8s_tim1_CCxCmd.c: 109: }
+      000059 81               [ 4]  124 	ret
+                                    125 	.area CODE
+                                    126 	.area CONST
+                                    127 	.area INITIALIZER
+                                    128 	.area CABS (ABS)
